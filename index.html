@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS SPA - Single Page Application</title>
+
+    <!-- The jQuery library -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- AngularJS library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!--load angular application js before loading any of other angular js function or files-->
+    <script src="js/myApp.js"></script>
+
+</head>
+<body>
+
+
+    <div class="container" >
+
+        <div data-ng-app="myApp" data-ng-controller="personController">
+
+            <button ng-click="toggle()">Toggle</button>
+            <p ng-hide="myVar">
+                First Name: <input type="text" data-ng-model="person.firstName"><br />
+                Last Name: <input type="text" data-ng-model="person.lastName"><br />
+                Full Name: {{ fullName() | uppercase }}<br />
+                Income: {{ person.income | currency }}
+            </p>
+
+            <br /><br />
+
+        </div>
+
+
+        <!--<div data-ng-app="myApp" data-ng-controller="customersController">-->
+
+            <!--<table class="table table-hover">-->
+                <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th class="col-md-6">Name</th>-->
+                        <!--<th class="col-md-3">City</th>-->
+                        <!--<th class="col-md-3">Country</th>-->
+                    <!--</tr>-->
+                <!--</thead>-->
+
+                <!--<tbody>-->
+                    <!--<tr data-ng-repeat="x in names | orderBy:['Country','City','Name']">-->
+                        <!--<td data-ng-bind="x.Name"></td>-->
+                        <!--<td data-ng-bind="x.City"></td>-->
+                        <!--<td data-ng-bind="x.Country"></td>-->
+                    <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+
+
+
+    <!--<div data-ng-app="myApp" data-ng-init="mySwitch=true">-->
+        <!--<p><button data-ng-disabled="!mySwitch">Click Me!</button></p>-->
+        <!--<p><input type="checkbox" data-ng-model="mySwitch">Button</p>-->
+    <!--</div>-->
+
+
+
+
+
+    </div>
+
+
+    <div class="footer">
+        <div class="container">
+            <p id="pJqueryVersion" class="text-muted"></p>
+        </div>
+    </div>
+
+    <script>
+        $('#pJqueryVersion').text("jQuery Version: " + $.fn.jquery);
+    </script>
+
+
+
+</body>
+</html>
