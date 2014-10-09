@@ -34,8 +34,6 @@ app.controller("codeTableController", function($scope,$http){
 
 });
 
-
-
 app.controller("personController", function($scope){
     $scope.person = {
         firstName: "John",
@@ -51,3 +49,9 @@ app.controller("personController", function($scope){
         $scope.myVar = !$scope.myVar;
     };
 });
+
+app.controller("validateController", function($scope){
+    $scope.user = 'John Doe';
+    $scope.email = 'john.doe@gmail.com';
+});
+

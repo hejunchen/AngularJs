@@ -26,6 +26,7 @@
 
         <div style="margin-top:60px;"></div>
 
+
         <!--<div data-ng-app="myApp" data-ng-controller="personController">-->
 
             <!--<button ng-click="toggle()">Toggle</button>-->
@@ -67,51 +68,69 @@
 
 
 
-        <div data-ng-app="myApp" data-ng-controller="codeTableController">
+        <!--<div data-ng-app="myApp" data-ng-controller="codeTableController">-->
 
-            <!--{{ GetCodeTableByName('Country') }}-->
-            <!--<form role="form">-->
-                <!--<div data-ng-repeat="x in codeTables | filter:CodeTableName='Country' " class="row" style="margin-top:10px;">-->
-                    <!--<span data-ng-bind="x.CodeTableName" class="col-md-2"></span>-->
-                    <!--<span class="col-md-4">-->
-                        <!--<select class="form-control">-->
-                            <!--<option data-ng-repeat="item in x.CodeTable" value="{{ item.NodeId }}">{{ item.Description }}</option>-->
-                        <!--</select>-->
-                    <!--</span>-->
-                <!--</div>-->
-            <!--</form>-->
+            <!--<table class="table">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th>Code Tables</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                    <!--<tr data-ng-repeat="x in codeTables">-->
+                        <!--<td>-->
+                            <!--<span data-ng-bind="x.CodeTableName" class="col-md-3"></span>-->
+                            <!--<select class="col-md-6">-->
+                                <!--<option data-ng-repeat="item in x.CodeTable" value="{{ item.NodeId }}">{{ item.Description }}</option>-->
+                            <!--</select>-->
+                        <!--</td>-->
+                        <!--<td data-ng-bind="x.Name"></td>-->
+                        <!--<td data-ng-bind="x.City"></td>-->
+                        <!--<td data-ng-bind="x.Country"></td>-->
+                    <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Code Tables</th>
-                    <!--<th class="col-md-6">Code Type</th>-->
-                    <!--<th class="col-md-3">Mnemonic</th>-->
-                    <!--<th class="col-md-3">Description</th>-->
-                </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="x in codeTables">
-                        <td>
-                            <span data-ng-bind="x.CodeTableName" class="col-md-3"></span>
-                            <select class="col-md-6">
-                                <option data-ng-repeat="item in x.CodeTable" value="{{ item.NodeId }}">{{ item.Description }}</option>
-                            </select>
-                        </td>
-                        <td data-ng-bind="x.Name"></td>
-                        <td data-ng-bind="x.City"></td>
-                        <td data-ng-bind="x.Country"></td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
+        <!--</div>-->
 
 
         <!--<div data-ng-app="myApp" data-ng-init="mySwitch=true">-->
             <!--<p><button data-ng-disabled="!mySwitch">Click Me!</button></p>-->
             <!--<p><input type="checkbox" data-ng-model="mySwitch">Button</p>-->
         <!--</div>-->
+
+
+
+
+
+        <!--validation on form controls-->
+        <form ng-app="myApp" ng-controller="validateController" name="myForm" novalidate>
+
+            <p>User Name:<br />
+                <input type="text" name="user" ng-model="user" required>
+                <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+                    <span ng-show="myForm.user.$error.required">Username is required.</span>
+                </span>
+            </p>
+
+            <p>Email:<br />
+                <input type="email" name="email" ng-model="email" required>
+                <span style="color:red" ng-show="myForm.email.$dirty && myForm.user.$invalid">
+                    <span ng-show="myForm.email.$error.required">Email is required.</span>
+                    <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+                </span>
+            </p>
+
+            <p>
+                <input type="submit" ng-disabled="myForm.user.$dirty && myForm.user.$invalid || myForm.email.$dirty && myForm.email.$invalid" value="Submit Button">
+            </p>
+
+        </form>
+
+
+
+
+
 
 
     </div>
