@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Health Care Provider Registration</title>
+
+    <!-- The jQuery library -->
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <!-- AngularJS library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!--load angular application js before loading any of other angular js function or files-->
+    <script src="js/Angular/PRWeb.js"></script>
+
+    <link rel="stylesheet" href="css/Site.css">
+
+
+</head>
+
+<body ng-app="PRApp" ng-controller="HomeController" class="pageContainer">
+
+
+    <div style="width:970px; margin: auto;">
+
+        <header id="bannerTop">
+            <div>
+                <a href="http://www.pac.bluecross.ca/providernet" class="logo-PROVIDERnet" target="_blank">
+                    PROVIDERnet
+                </a>
+                <a id="SiteBanner_lnkPBC" class="logo-Company" href="http://www.pac.bluecross.ca/default.aspx" target="_blank">Pacific Blue Cross | BC Life</a>
+            </div>
+        </header>
+
+        <div class="panelContent_inner" style="background-color:white; padding: 10px;" ng-include="'signature.html'"></div>
+
+        <footer class="footer">
+            <ul>
+                <li>
+                    <a href="http://www.bluecross.ca" class="mapleleaf target-blank" title="Canadian Association of Blue Cross Plans" target="_blank">Canadian Association of Blue Cross Plans</a>
+                    Copyright &copy; 2014 PBC Health Benefits Society. All rights reserved
+                </li>
+                <li>
+                    <a href="http://www.pac.bluecross.ca/corp/privacy.aspx" class="target-blank" title="Privacy Statement" target="_blank">Privacy</a>
+                </li>
+                <li>
+                    <a href="http://www.pac.bluecross.ca/corp/legal.aspx" class="target-blank" title="Legal" target="_blank">Legal</a>
+                </li>
+                <li>
+                    <a href="http://www.pac.bluecross.ca/corp/security.aspx" title="Security" target="_blank">Security</a>
+                </li>
+                <li>
+                    <a href="http://www.pac.bluecross.ca/browsers" title="Browser Requirements" target="_blank">Browser</a>
+                </li>
+                <li>
+                    <a href="http://www.pac.bluecross.ca/Corp/contact/default.aspx" title="Contact" target="_blank">Contact</a>
+                </li>
+                <li>
+                    CUPE 1816
+                </li>
+            </ul>
+        </footer>
+
+
+    </div>
+
+
+
+
+
+
+</body>
+</html>

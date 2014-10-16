@@ -43,55 +43,53 @@
 
 
 
-        <div data-ng-app="myApp" data-ng-controller="customersController">
+        <!--<div data-ng-app="myApp" data-ng-controller="customersController">-->
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th class="col-md-6">Name</th>
-                        <th class="col-md-3">City</th>
-                        <th class="col-md-3">Country</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr data-ng-repeat="x in names | orderBy:['Country','City','Name']">
-                        <td data-ng-bind="x.Name"></td>
-                        <td data-ng-bind="x.City"></td>
-                        <td data-ng-bind="x.Country"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-
-
-
-
-        <!--<div data-ng-app="myApp" data-ng-controller="codeTableController">-->
-
-            <!--<table class="table">-->
+            <!--<table class="table table-hover">-->
                 <!--<thead>-->
-                <!--<tr>-->
-                    <!--<th>Code Tables</th>-->
-                <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<th class="col-md-6">Name</th>-->
+                        <!--<th class="col-md-3">City</th>-->
+                        <!--<th class="col-md-3">Country</th>-->
+                    <!--</tr>-->
                 <!--</thead>-->
+
                 <!--<tbody>-->
-                    <!--<tr data-ng-repeat="x in codeTables">-->
-                        <!--<td>-->
-                            <!--<span data-ng-bind="x.CodeTableName" class="col-md-3"></span>-->
-                            <!--<select class="col-md-6">-->
-                                <!--<option data-ng-repeat="item in x.CodeTable" value="{{ item.NodeId }}">{{ item.Description }}</option>-->
-                            <!--</select>-->
-                        <!--</td>-->
+                    <!--<tr data-ng-repeat="x in names | orderBy:['Country','City','Name']">-->
                         <!--<td data-ng-bind="x.Name"></td>-->
                         <!--<td data-ng-bind="x.City"></td>-->
                         <!--<td data-ng-bind="x.Country"></td>-->
                     <!--</tr>-->
                 <!--</tbody>-->
             <!--</table>-->
-
         <!--</div>-->
+
+
+
+
+
+
+        <div id="divCodeTables" data-ng-app="myApp" data-ng-controller="codeTableController">
+
+            <div class="toolbar">
+                <input class="btn btn-md-lg btn-primary" type="button" value="Provider Category" ng-click="GetCodeTableByName('ProviderCategory')">
+                <input class="btn btn-md-lg btn-primary" type="button" value="Provider Assigning Authority" ng-click="GetCodeTableByName('ProviderAssigningAuthority')">
+                <input class="btn btn-md-lg btn-primary" type="button" value="Practitioner Category" ng-click="GetCodeTableByName('PractitionerCategory')">
+                <input class="btn btn-md-lg btn-primary" type="button" value="Practitioner Assigning Authority" ng-click="GetCodeTableByName('PractitionerAssigningAuthority')">
+            </div>
+            <br />
+            <div ng-show="CurrentCodeTable!=null">
+                <select class="col-md-8 form-control"><h3>{{ CurrentCodeTable.CodeTableName }}</h3>
+                    <option class="form-control" ng-repeat="x in CurrentCodeTable.CodeTable" value="{{ x.NodeId }}">{{ x.Description }}</option>
+                </select>
+            </div>
+
+
+        </div>
+
+
+
+
 
 
         <!--<div data-ng-app="myApp" data-ng-init="mySwitch=true">-->
