@@ -36,7 +36,10 @@
             </div>
         </header>
 
-        <div class="panelContent_inner" ng-controller="HomeController" style="background-color:white; padding: 10px;" ng-include="'Signature.html'"></div>
+        <div class="panelContent_inner"
+             ng-controller="HomeController" ng-init="CreateNewApplication()"
+             style="background-color:white; padding: 10px;" ng-include="'Signature.html'">
+        </div>
 
         <footer class="footer">
             <ul>

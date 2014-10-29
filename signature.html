@@ -137,39 +137,38 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAppDate">Date:</label></span>
-                    <span class="col-md-6"><input id="txtAppDate" class="form-control" type="text" readonly="readonly" value="{{signature.AppDate}}"></span>
+                    <span class="col-md-6"><input id="txtAppDate" class="form-control" type="text" readonly="readonly" value="{{application.signature.AppDate}}"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddpWhoYouAre">Select who you are:</label></span>
-                        <span class="col-md-6">
-                            <select id="ddpWhoYouAre" class="form-control" ng-model="signature.WhoYouAre">
-                                <option>I am the Provider</option>
-                                <option>I am a person authorized to sign for this provider</option>
-                            </select>
-                        </span>
+                    <span class="col-md-6">
+                        <select id="ddpWhoYouAre" class="form-control" ng-model="application.signature.WhoYouAre">
+                            <option>I am the Provider</option>
+                            <option>I am a person authorized to sign for this provider</option>
+                        </select>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtName">Name:</label></span>
-                    <span class="col-md-6"><input id="txtName" class="form-control" type="text" ng-model="signature.Name"></span>
+                    <span class="col-md-6"><input id="txtName" class="form-control" type="text" ng-model="application.signature.Name"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtOccupationTitle">Occupation Title:</label></span>
-                    <span class="col-md-6"><input id="txtOccupationTitle" class="form-control" type="text" ng-model="signature.OccupationTitle"></span>
+                    <span class="col-md-6"><input id="txtOccupationTitle" class="form-control" type="text" ng-model="application.signature.OccupationTitle"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtPhone">Contact Phone Number:</label></span>
-                    <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="signature.Phone"></span>
+                    <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="application.signature.Phone"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
-                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="signature.Email"></span>
+                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="application.signature.Email"></span>
                 </div>
-
                 <br />
                 <br />
 

@@ -18,6 +18,8 @@
     <!--load angular application js before loading any of other angular js function or files-->
     <script src="js/myApp.js"></script>
 
+    <!--<script src="js/PRWeb.js"></script>-->
+
 </head>
 <body>
 
@@ -76,6 +78,7 @@
                 <input class="btn btn-md-lg btn-primary" type="button" value="Provider Assigning Authority" ng-click="GetCodeTableByName('ProviderAssigningAuthority')">
                 <input class="btn btn-md-lg btn-primary" type="button" value="Practitioner Category" ng-click="GetCodeTableByName('PractitionerCategory')">
                 <input class="btn btn-md-lg btn-primary" type="button" value="Practitioner Assigning Authority" ng-click="GetCodeTableByName('PractitionerAssigningAuthority')">
+                <input class="btn btn-md-lg btn-primary" type="button" value="Country" ng-click="GetCodeTableByName('Country')">
             </div>
             <br />
             <div ng-show="CurrentCodeTable!=null">
@@ -89,6 +92,11 @@
 
 
 
+        <!--<br /><br />-->
+        <!--<form ng-app="PRApp" ng-controller="HomeController" action="ProviderRegistration.html">-->
+            <!--<input class="btn btn-md-lg btn-primary" type="submit"-->
+                   <!--value="Start Provider Registration">-->
+        <!--</form>-->
 
 
 

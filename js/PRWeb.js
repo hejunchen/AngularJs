@@ -3,19 +3,38 @@
  */
 var app = angular.module("PRApp", []);
 
+
 app.factory('ProviderFactory', function(){
 
     var ProviderClass = function(){
-        this.ProviderCategory = { id: -1, name: ''};
+        this.ProviderCategory = { nodeId: -1, name: ''};
         this.LegalName = '';
         this.Address = { line1: '',
                          line2: '',
                          line3: '',
                          city: '',
-                         prince: {}
+                         province: { nodeId: -1, name: ''},
+                         postalCode: '',
+                         country: { nodeId: 1, name: 'Canada' }
                         };
+        this.Phone = '';
+        this.Fax = '';
+        this.Email = '';
+
+        this.PrintAll = function(){
+            console.log('ProviderCategory: ' + this.ProviderCategory);
+            console.log('LegalName: ' + this.LegalName);
+            console.log('Address: ' + this.Address);
+            console.log('Phone: ' + this.Phone);
+            console.log('Fax: ' + this.Fax);
+            console.log('Email: ' + this.Email);
+        };
 
     };
+
+
+
+    return ProviderClass;
 });
 
 app.factory('SignatureFactory', function(){
@@ -51,11 +70,38 @@ app.factory('SignatureFactory', function(){
 
 });
 
-app.controller("HomeController", ['$scope', '$http', 'SignatureFactory', function($scope,$http,SignatureFactory){
+app.controller("HomeController", ['$scope','$http','SignatureFactory','ProviderFactory',function($scope,$http,SignatureFactory,ProviderFactory){
 
-    $scope.signature = new SignatureFactory();
-    $scope.signature.PrintAll();
+    var OpticalStoreProviderCategoryNodeId = 5011;
 
+
+
+    $scope.application = {
+        signature: null,
+        provider: null,
+        practitioners: [],
+        corporateContact: null,
+        IsOpticalStore: function(){
+            return this.provider.ProviderCategory.nodeId === OpticalStoreProviderCategoryNodeId;
+        }
+    };
+
+    $scope.CreateNewApplication = function(){
+
+        alert('Creating a new application now.')
+
+        var signature = new SignatureFactory();
+        signature.PrintAll();
+        $scope.application.signature = signature;
+
+        var provider = new ProviderFactory();
+        provider.PrintAll();
+        $scope.application.provider = provider;
+
+
+        console.log($scope.application.IsOpticalStore());
+
+    };
 
 
 }]);
