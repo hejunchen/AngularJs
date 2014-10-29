@@ -5,7 +5,7 @@
     <title>Health Care Provider Registration</title>
 
     <!-- The jQuery library -->
-    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="lib/jquery-2.1.0.min.js"></script>
     <!-- AngularJS library -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
     <!-- Latest compiled and minified CSS -->
@@ -13,18 +13,17 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
 
     <!--load angular application js before loading any of other angular js function or files-->
-    <script src="js/Angular/PRWeb.js"></script>
+    <script src="js/PRWeb.js"></script>
 
     <link rel="stylesheet" href="css/Site.css">
 
 
 </head>
 
-<body ng-app="PRApp" ng-controller="HomeController" class="pageContainer">
-
+<body ng-app="PRApp" class="pageContainer">
 
     <div style="width:970px; margin: auto;">
 
@@ -37,7 +36,7 @@
             </div>
         </header>
 
-        <div class="panelContent_inner" style="background-color:white; padding: 10px;" ng-include="'signature.html'"></div>
+        <div class="panelContent_inner" ng-controller="HomeController" style="background-color:white; padding: 10px;" ng-include="'Signature.html'"></div>
 
         <footer class="footer">
             <ul>
@@ -68,11 +67,6 @@
 
 
     </div>
-
-
-
-
-
 
 </body>
 </html>

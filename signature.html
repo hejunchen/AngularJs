@@ -47,7 +47,7 @@
         <li>Corporate contact (can also be the practitioner)</li>
     </ul>
     <br />
-    <div id="divSteps">
+    <div id="divSteps" style="display:none">
         <p><b>Steps to register for an account:</b></p>
         <div style="margin:auto; width:225px; padding:10px; background-color:#E5F5FA; border-radius:5px;">
             <h4>Step 1</h4>
@@ -137,13 +137,13 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAppDate">Date:</label></span>
-                    <span class="col-md-6"><input id="txtAppDate" class="form-control" type="text" readonly="readonly" ng-model="AppDate"></span>
+                    <span class="col-md-6"><input id="txtAppDate" class="form-control" type="text" readonly="readonly" value="{{signature.AppDate}}"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddpWhoYouAre">Select who you are:</label></span>
                         <span class="col-md-6">
-                            <select id="ddpWhoYouAre" class="form-control" ng-model="WhoYouAre">
+                            <select id="ddpWhoYouAre" class="form-control" ng-model="signature.WhoYouAre">
                                 <option>I am the Provider</option>
                                 <option>I am a person authorized to sign for this provider</option>
                             </select>
@@ -152,22 +152,22 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtName">Name:</label></span>
-                    <span class="col-md-6"><input id="txtName" class="form-control" type="text" ng-model="Name"></span>
+                    <span class="col-md-6"><input id="txtName" class="form-control" type="text" ng-model="signature.Name"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtOccupationTitle">Occupation Title:</label></span>
-                    <span class="col-md-6"><input id="txtOccupationTitle" class="form-control" type="text" ng-model="OccupationTitle"></span>
+                    <span class="col-md-6"><input id="txtOccupationTitle" class="form-control" type="text" ng-model="signature.OccupationTitle"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtPhone">Contact Phone Number:</label></span>
-                    <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="Phone"></span>
+                    <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="signature.Phone"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
-                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="Email"></span>
+                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="signature.Email"></span>
                 </div>
 
                 <br />
