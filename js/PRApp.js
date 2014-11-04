@@ -1,7 +1,19 @@
 /**
  * Created by hchen on 10/14/2014.
  */
-var app = angular.module("PRApp", []);
+
+var app = angular.module("PRApp", ['ngRoute']);
+
+app.config(['$routeProvider', function($routeProvider){
+
+    $routeProvider.when('/', { templateUrl: 'partials/Welcome.html', controller: 'ApplicationController'})
+        .when('/signature', { templateUrl: 'partials/Signature.html', controller: 'ApplicationController' })
+//        when('/provider', { templateUrl: 'partials/Provider.html', controller: 'ApplicationController' }).
+//        when('/practitioners', { templateUrl: 'partials/PractitionerList.html', controller: 'ApplicationController' }).
+//        when('/practitioner/:practitionerGuid', { templateUrl: 'partials/Practitioner.html', controller: 'ApplicationController' }).
+//        when('/corporateContact', { templateUrl: 'partials/CorporateContact.html', controller: 'ApplicationController' }).
+        .otherwise({ redirectTo: '/' });
+}]);
 
 app.factory('CorporateContactFactory', function(){
 
@@ -30,6 +42,7 @@ app.factory('CorporateContactFactory', function(){
 app.factory('PractitionerFactory', function(){
 
     var PractitionerClass = function(){
+        this.Guid = '';
         this.Category = { nodeId: -1, name: ''};
         this.AssigningAuthority = { nodeId: -1, name: ''};
         this.EffectiveDateAtLocation = new Date();
@@ -45,6 +58,7 @@ app.factory('PractitionerFactory', function(){
 
         this.PrintAll = function(){
             console.log('Print All for: Practitioner');
+            console.log('Guid: ' + this.Guid);
             console.log('Category: ' + this.Category);
             console.log('AssigningAuthority: ' + this.AssigningAuthority);
             console.log('EffectiveDateAtLocation: ' + this.EffectiveDateAtLocation);
@@ -76,6 +90,7 @@ app.factory('ProviderFactory', function(){
         this.Phone = '';
         this.Fax = '';
         this.Email = '';
+        this.BusinessLicense = { number: '', effectiveDate: new Date() };
 
         this.PrintAll = function(){
             console.log('Print All for: Provider');
@@ -85,13 +100,13 @@ app.factory('ProviderFactory', function(){
             console.log('Phone: ' + this.Phone);
             console.log('Fax: ' + this.Fax);
             console.log('Email: ' + this.Email);
+            console.log('Business License: ' + this.BusinessLicense);
         };
 
     };
 
-
-
     return ProviderClass;
+
 });
 
 app.factory('SignatureFactory', function(){
@@ -128,44 +143,4 @@ app.factory('SignatureFactory', function(){
 
 });
 
-app.controller("HomeController", ['$scope','$http','SignatureFactory','ProviderFactory','PractitionerFactory','CorporateContactFactory',
-    function($scope,$http,SignatureFactory,ProviderFactory,PractitionerFactory,CorporateContactFactory){
 
-    var OpticalStoreProviderCategoryNodeId = 5011;
-
-    $scope.application = {
-        signature: null,
-        provider: null,
-        practitioners: [],
-        corporateContact: null,
-        IsOpticalStore: function(){
-            return (this.provider.Category.nodeId === OpticalStoreProviderCategoryNodeId);
-        }
-    };
-
-    $scope.CreateNewApplication = function(){
-
-        console.log('Creating a new application now.')
-
-        var signature = new SignatureFactory();
-        signature.PrintAll();
-        $scope.application.signature = signature;
-
-        var provider = new ProviderFactory();
-        provider.PrintAll();
-        $scope.application.provider = provider;
-
-        var practitioner = new PractitionerFactory();
-        practitioner.PrintAll();
-        $scope.application.practitioners.push(practitioner);
-
-        var corporateContact = new CorporateContactFactory();
-        corporateContact.PrintAll();
-        $scope.application.corporateContact = corporateContact;
-
-        console.log($scope.application.IsOpticalStore());
-
-    };
-
-
-}]);
