@@ -6,9 +6,6 @@
 
         <fieldset>
 
-            <legend class="form-signin-heading">Signature</legend>
-
-            <br />
             <br />
 
 
@@ -16,13 +13,13 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAppDate">Date:</label></span>
-                    <span class="col-md-6"><input id="txtAppDate" class="form-control" type="text" readonly="readonly" value="{{application.signature.AppDate}}"></span>
+                    <span class="col-md-6"><input id="txtAppDate" class="form-control" type="text" readonly="readonly" value="{{Application.Signature.AppDate | date: 'MM-dd-yyyy'}}"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddpWhoYouAre">Select who you are:</label></span>
                     <span class="col-md-6">
-                        <select id="ddpWhoYouAre" class="form-control" ng-model="application.signature.WhoYouAre">
+                        <select id="ddpWhoYouAre" class="form-control" ng-model="Application.Signature.WhoYouAre">
                             <option>I am the Provider</option>
                             <option>I am a person authorized to sign for this provider</option>
                         </select>
@@ -31,28 +28,29 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtName">Name:</label></span>
-                    <span class="col-md-6"><input id="txtName" class="form-control" type="text" ng-model="application.signature.Name"></span>
+                    <span class="col-md-6"><input id="txtName" class="form-control" type="text" ng-model="Application.Signature.Name"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtOccupationTitle">Occupation Title:</label></span>
-                    <span class="col-md-6"><input id="txtOccupationTitle" class="form-control" type="text" ng-model="application.signature.OccupationTitle"></span>
+                    <span class="col-md-6"><input id="txtOccupationTitle" class="form-control" type="text" ng-model="Application.Signature.OccupationTitle"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtPhone">Contact Phone Number:</label></span>
-                    <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="application.signature.Phone"></span>
+                    <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="Application.Signature.Phone"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
-                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="application.signature.Email"></span>
+                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="Application.Signature.Email"></span>
                 </div>
 
                 <br />
 
                 <div class="row topMargin" align="center">
-                    <span class="col-md-12"><a href="partials/Provider.html" class="btn btn-md-large btn-primary">Start Registration</a></span>
+                    <span class="col-md-6"><a href="#" class="btn btn-md-large btn-primary">Back to Welcome page</a></span>
+                    <span class="col-md-6"><a href="#/provider" class="btn btn-md-large btn-primary">Next Step</a></span>
                 </div>
                 <br />
 

@@ -6,29 +6,109 @@
 
         <fieldset>
 
-            <legend class="form-signin-heading">Provider</legend>
-
-            <br />
             <br />
 
+            <div class="form-group form-group-md">
 
-            <!--<div class="form-group form-group-md">-->
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="ddpProviderCategory">Provider Category:</label></span>
+                    <span class="col-md-6">
+                        <select id="ddpProviderCategory" class="form-control" ng-model="Application.Provider.Category.nodeId">
 
-                <!--<div class="row topMargin">-->
-                    <!--<span class="col-md-4 right"><label class="control-label" for="ddpProviderCategory">Provider Category:</label></span>-->
-                    <!--<span class="col-md-6">-->
-                        <!--<select id="ddpProviderCategory" class="form-control" ng-model="application.signature.WhoYouAre">-->
-                            <!--<option>I am the Provider</option>-->
-                        <!--</select>-->
-                    <!--</span>-->
-                <!--</div>-->
+                        </select>
+                    </span>
+                </div>
 
-            <!--</div>-->
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtLegalName">Legal Name:</label></span>
+                    <span class="col-md-6"><input id="txtLegalName" class="form-control" type="text" ng-model="Application.Provider.LegalName"></span>
+                </div>
 
+            </div>
+
+            <br />
+
+            <div class="form-group form-group-md">
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtAddress1">Address Line 1:</label></span>
+                    <span class="col-md-6"><input id="txtAddress1" class="form-control" type="text" ng-model="Application.Provider.Address.line1"></span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtAddress2">Address Line 2:</label></span>
+                    <span class="col-md-6"><input id="txtAddress2" class="form-control" type="text" ng-model="Application.Provider.Address.line2"></span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtAddress3">Address Line 3:</label></span>
+                    <span class="col-md-6"><input id="txtAddress3" class="form-control" type="text" ng-model="Application.Provider.Address.line3"></span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtCity">City:</label></span>
+                    <span class="col-md-6"><input id="txtCity" class="form-control" type="Email" ng-model="Application.Provider.Address.city"></span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="ddpProvince">Province:</label></span>
+                    <span class="col-md-6">
+                        <select id="ddpProvince" class="form-control" ng-model="Application.Provider.Address.province.nodeId">
+
+                        </select>
+                    </span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtPostalCode">Postal Code:</label></span>
+                    <span class="col-md-6"><input id="txtPostalCode" class="form-control" type="text" ng-model="Application.Provider.Address.postalCode"></span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtCountry">Country:</label></span>
+                    <!--<span class="col-md-6"><label class="control-label">{{ Application.Provider.Address.country.name }}</label></span>-->
+                    <span class="col-md-6"><input id="txtCountry" class="form-control" type="text" ng-model="Application.Provider.Address.country.name" ng-disabled="true"></span>
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="form-group form-group-md">
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtPhone">Phone Number:</label></span>
+                    <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="Application.Provider.Phone"></span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtFax">Fax Number:</label></span>
+                    <span class="col-md-6"><input id="txtFax" class="form-control" type="text" ng-model="Application.Provider.Fax"></span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
+                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="Application.Provider.Email"></span>
+                </div>
+
+
+                <br />
+
+                <div class="row topMargin" align="center">
+                    <span class="col-md-6"><a href="#/signature" class="btn btn-md-large btn-primary">Back to Signature</a></span>
+                    <span class="col-md-6"><a href="#/practitioners" class="btn btn-md-large btn-primary">Next Step</a></span>
+                </div>
+                <br />
+
+
+            </div>
 
         </fieldset>
+
+
+
+
 
     </form>
 
 </div>
-
