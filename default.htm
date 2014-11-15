@@ -14,9 +14,11 @@
     <script src="lib/sweet-alert.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-route.min.js"></script>
+
     <script src="js/PRApp.js"></script>
-    <script src="js/controllers/ApplicationController.js"></script>
     <script src="js/services/ApplicationService.js"></script>
+    <script src="js/controllers/ApplicationController.js"></script>
+
 
 
 </head>
@@ -35,7 +37,7 @@
         </header>
 
 
-        <div class="panelContent_inner" style="background-color:white; padding: 20px;">
+        <div class="panelContent_inner" style="background-color:white; padding: 20px;" ng-controller="ApplicationController">
             <div ng-view></div>
         </div>
 

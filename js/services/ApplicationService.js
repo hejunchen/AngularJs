@@ -1,6 +1,31 @@
 /**
  * Created by hchen on 11/4/2014.
  */
+app.service('CodeTableLoaderService', ['$http', function($http){
+
+    var GetCodeTableByType = function(codeTableType){
+
+        var codeTable = [];
+
+        var url = "http://hchenworkpc.pbchbs.com/ProviderRegistration/api/codetable/" + codeTableType;
+        console.log('URL: ' + url.toString());
+
+        $http.get(url)
+            .success(function(data){
+                console.log('Getting data for: ' + codeTableType);
+                if (data != null)
+                {
+                    console.log('CodeTable result found');
+                    codeTable = data;
+                }
+            });
+
+        return codeTable;
+    }
+
+    return { getCodeTableByType: GetCodeTableByType };
+
+}]);
 
 app.service('CorporateContactService', function(){
 
@@ -31,6 +56,7 @@ app.service('CorporateContactService', function(){
 
 app.service('PractitionerService', function(){
 
+
     var Practitioner = {
         Guid: '',
         Category: { nodeId: -1, name: ''},
@@ -45,6 +71,7 @@ app.service('PractitionerService', function(){
             lastName: ''
         },
         Email: '',
+        CategoryList: [],
         PrintAll: function(){
             console.log('Print All for: Practitioner');
             console.log('Guid: ' + this.Guid);
@@ -56,7 +83,6 @@ app.service('PractitionerService', function(){
             console.log('Person: ' + this.Person);
             console.log('Email: ' + this.Email);
         }
-
     };
 
     var GetPractitioner = function(){
@@ -70,14 +96,14 @@ app.service('PractitionerService', function(){
 app.service('ProviderService', function(){
 
     var Provider = {
-        Category: { nodeId: -1, name: ''},
-        LegalName: '',
+        Category: { nodeId: 5005, name: 'Chiropractic'},
+        LegalName: 'Test Legal Name',
         Address: {
             line1: '',
             line2: '',
             line3: '',
             city: '',
-            province: { nodeId: -1, name: ''},
+            province: { nodeId: 2, name: 'British Columbia'},
             postalCode: '',
             country: { nodeId: 1, name: 'Canada' }
         },
@@ -99,7 +125,6 @@ app.service('ProviderService', function(){
             console.log('Email: ' + this.Email);
             console.log('Business License: ' + this.BusinessLicense);
         }
-
     };
 
     var GetProvider = function(){
@@ -137,27 +162,37 @@ app.service('SignatureService', function(){
 
 });
 
-app.service('ApplicationService', function(SignatureService,ProviderService,PractitionerService,CorporateContactService){
+app.service('ApplicationService', ['SignatureService','ProviderService','PractitionerService','CorporateContactService','CodeTableLoaderService',
+    function(SignatureService,ProviderService,PractitionerService,CorporateContactService,CodeTableLoaderService){
 
-    var Application = {
-        Signature: SignatureService.getSignature(),
-        Provider: ProviderService.getProvider(),
-        Practitioners: [],
-        CorporateContact: CorporateContactService.getCorporateContact(),
-        PrintAll: function(){
-            console.log('ok');
-            this.Signature.PrintAll();
-            this.Provider.PrintAll();
-            this.CorporateContact.PrintAll();
+        var Application = {
+            Signature: SignatureService.getSignature(),
+            Provider: ProviderService.getProvider(),
+            Practitioners: [],
+            CorporateContact: CorporateContactService.getCorporateContact(),
+//            ProviderCategoryList: CodeTableLoaderService.getCodeTableByType('ProviderCategory'),
+            PrintAll: function(){
+                console.log('ok');
+                this.Signature.PrintAll();
+                this.Provider.PrintAll();
+                this.CorporateContact.PrintAll();
+            }
         }
-    }
 
-    var GetApplication = function(){
-        return Application;
-    }
+//        var PopulateProviderCategoryList = function(){
+//            Application.ProviderCategoryList = CodeTableLoaderService.getCodeTableByType('ProviderCategory');
+//        }
 
-    return { getApplication: GetApplication };
+        var GetApplication = function(){
+//            Application.ProviderCategoryList = CodeTableLoaderService.getCodeTableByType('ProviderCategory');
+            return Application;
+        }
 
-});
+        return {
+            getApplication: GetApplication
+//            populateProviderCategoryList: PopulateProviderCategoryList
+        };
+
+}]);
 
 

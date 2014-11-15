@@ -14,8 +14,10 @@
                     <span class="col-md-4 right"><label class="control-label" for="ddpProviderCategory">Provider Category:</label></span>
                     <span class="col-md-6">
                         <select id="ddpProviderCategory" class="form-control" ng-model="Application.Provider.Category.nodeId">
-
+                            <option ng-repeat="c in ProviderCategoryList.CodeTable" value="{{c.NodeId}}"
+                                    ng-selected="{{Application.Provider.Category.nodeId == c.NodeId}}">{{c.Description}}</option>
                         </select>
+
                     </span>
                 </div>
 
@@ -47,26 +49,26 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtCity">City:</label></span>
-                    <span class="col-md-6"><input id="txtCity" class="form-control" type="Email" ng-model="Application.Provider.Address.city"></span>
+                    <span class="col-md-6"><input id="txtCity" class="form-control" type="text" ng-model="Application.Provider.Address.city"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddpProvince">Province:</label></span>
                     <span class="col-md-6">
                         <select id="ddpProvince" class="form-control" ng-model="Application.Provider.Address.province.nodeId">
-
+                            <option ng-repeat="c in ProvinceList.CodeTable" value="{{c.NodeId}}"
+                                    ng-selected="{{Application.Provider.Address.province.nodeId == c.NodeId}}">{{c.Description}}</option>
                         </select>
                     </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtPostalCode">Postal Code:</label></span>
-                    <span class="col-md-6"><input id="txtPostalCode" class="form-control" type="text" ng-model="Application.Provider.Address.postalCode"></span>
+                    <span class="col-md-6"><input id="txtPostalCode" class="form-control" type="text" ng-model="Application.Provider.Address.postalCode" placeholder="V9W 2T8"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtCountry">Country:</label></span>
-                    <!--<span class="col-md-6"><label class="control-label">{{ Application.Provider.Address.country.name }}</label></span>-->
                     <span class="col-md-6"><input id="txtCountry" class="form-control" type="text" ng-model="Application.Provider.Address.country.name" ng-disabled="true"></span>
                 </div>
 
@@ -88,7 +90,7 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
-                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="Application.Provider.Email"></span>
+                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="Application.Provider.Email" placeholder="yourname@domain.com"></span>
                 </div>
 
 
