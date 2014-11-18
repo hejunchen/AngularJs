@@ -1,9 +1,11 @@
 /**
  * Created by hchen on 11/4/2014.
  */
-app.service('CodeTableLoaderService', ['$http', function($http){
+app.service('CodeTableLoaderService', ['$http','$q',function($http,$q){
 
     var GetCodeTableByType = function(codeTableType){
+
+        var deferred = $q.defer();
 
         var codeTable = [];
 
@@ -12,15 +14,11 @@ app.service('CodeTableLoaderService', ['$http', function($http){
 
         $http.get(url)
             .success(function(data){
-                console.log('Getting data for: ' + codeTableType);
-                if (data != null)
-                {
-                    console.log('CodeTable result found');
-                    codeTable = data;
-                }
+                codeTable = data;
+                deferred.resolve(codeTable);
             });
 
-        return codeTable;
+        return deferred.promise;
     }
 
     return { getCodeTableByType: GetCodeTableByType };
@@ -71,7 +69,6 @@ app.service('PractitionerService', function(){
             lastName: ''
         },
         Email: '',
-        CategoryList: [],
         PrintAll: function(){
             console.log('Print All for: Practitioner');
             console.log('Guid: ' + this.Guid);
@@ -162,35 +159,65 @@ app.service('SignatureService', function(){
 
 });
 
-app.service('ApplicationService', ['SignatureService','ProviderService','PractitionerService','CorporateContactService','CodeTableLoaderService',
-    function(SignatureService,ProviderService,PractitionerService,CorporateContactService,CodeTableLoaderService){
+app.service('ApplicationService', ['SignatureService','ProviderService','PractitionerService','CorporateContactService',
+    function(SignatureService,ProviderService,PractitionerService,CorporateContactService){
 
         var Application = {
             Signature: SignatureService.getSignature(),
             Provider: ProviderService.getProvider(),
             Practitioners: [],
             CorporateContact: CorporateContactService.getCorporateContact(),
-//            ProviderCategoryList: CodeTableLoaderService.getCodeTableByType('ProviderCategory'),
             PrintAll: function(){
-                console.log('ok');
                 this.Signature.PrintAll();
                 this.Provider.PrintAll();
                 this.CorporateContact.PrintAll();
             }
         }
 
-//        var PopulateProviderCategoryList = function(){
-//            Application.ProviderCategoryList = CodeTableLoaderService.getCodeTableByType('ProviderCategory');
-//        }
 
         var GetApplication = function(){
-//            Application.ProviderCategoryList = CodeTableLoaderService.getCodeTableByType('ProviderCategory');
             return Application;
         }
 
+        var GetEmptyPractitioner = function(){
+            return new PractitionerService.getPractitioner();
+        }
+
+        var DeletePractitioner = function(practitioner){
+            this.Application.Practitioners.remove(practitioner);
+        }
+
+        var AddPractitioner = function(practitioner){
+            this.Application.Practitioners.push(practitioner);
+        }
+
+        var SavePractitioner = function(practitioner){
+
+            var isNew = false;
+            for(var i=0; i<=this.Application.Practitioners.length-1; i++)
+            {
+                if(this.Application.Practitioners[i].Guid == practitioner.Guid)
+                {
+                    isNew = true;
+                    this.Application.Practitioners[i] = practitioner;
+                }
+            }
+
+            console.log('Found New: ' + isNew);
+
+            if (!isNew)
+            {
+                AddPractitioner(practitioner);
+            }
+
+        }
+
         return {
-            getApplication: GetApplication
-//            populateProviderCategoryList: PopulateProviderCategoryList
+            getApplication: GetApplication,
+            getEmptyPractitioner: GetEmptyPractitioner,
+            deletePractitioner: DeletePractitioner,
+            addPractitioner: AddPractitioner,
+            savePractitioner: SavePractitioner
         };
 
 }]);

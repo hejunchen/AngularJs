@@ -2,60 +2,134 @@
 
 <div id="divPractitioners">
 
-    <form role="form" class="form-horizontal">
+    <fieldset>
+
+        <legend class="form-signin-heading">Practitioner List</legend>
+
+        <br />
+
+        <div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Category</td>
+                        <td>Effective Date</td>
+                        <td>Email Address</td>
+                    </tr>
+                </thead>
+                <tbody ng-hide="Application.Practitioners.length == 0">
+                    <tr ng-repeat="p in Application.Practitioners">
+                        <td></td>
+                        <td>{{p.Person.firstName + ' ' + p.Person.lastName}}</td>
+                        <td>{{p.Category.name}}</td>
+                        <td>{{p.EffectiveDateAtLocation | date: 'MM-dd-yyyy'}}</td>
+                        <td>{{p.Email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div ng-show="Application.Practitioners.length == 0"><p>No practitioners in the current application.</p></div>
+        </div>
+
+        <div class="row topMargin" align="center">
+            <span><button class="btn btn-md-large btn-primary" ng-click="SetNewPractitionerToCurrent()">New</button></span>
+        </div>
+
+        <br />
+
+    </fieldset>
+
+    <br />
+
+    <form role="form" class="form-horizontal" ng-show="CurrentPractitioner != null" >
 
         <fieldset>
 
-            <legend class="form-signin-heading">Practitioners</legend>
+            <legend class="form-signin-heading">Add or Edit</legend>
+
+
 
             <br />
-            <br />
-
 
             <div class="form-group form-group-md">
 
-                <!--<div class="row topMargin">-->
-                <!--<span class="col-md-4 right"><label class="control-label" for="txtAppDate">Date:</label></span>-->
-                <!--<span class="col-md-6"><input id="txtAppDate" class="form-control" type="text" readonly="readonly" value="{{application.signature.AppDate}}"></span>-->
-                <!--</div>-->
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="ddlPractitionerCategory">Practitioner Category:</label></span>
+                    <span class="col-md-6">
+                    <select id="ddlPractitionerCategory" class="form-control" ng-model="CurrentPractitioner.Category.nodeId">
+                        <option ng-repeat="c in PractitionerCategoryList.CodeTable" value="{{ c.NodeId }}"
+                                ng-selected="{{ CurrentPractitioner.Category.nodeId == c.NodeId }}">{{ c.Description }}</option>
+                    </select>
+                    </span>
+                </div>
 
-                <!--<div class="row topMargin">-->
-                <!--<span class="col-md-4 right"><label class="control-label" for="ddpWhoYouAre">Select who you are:</label></span>-->
-                <!--<span class="col-md-6">-->
-                <!--<select id="ddpWhoYouAre" class="form-control" ng-model="application.signature.WhoYouAre">-->
-                <!--<option>I am the Provider</option>-->
-                <!--<option>I am a person authorized to sign for this provider</option>-->
-                <!--</select>-->
-                <!--</span>-->
-                <!--</div>-->
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="ddlPractitionerAssigningAuthority">Regulatory/Licensing Body:</label></span>
+                    <span class="col-md-6">
+                    <select id="ddlPractitionerAssigningAuthority" class="form-control" ng-model="CurrentPractitioner.AssigningAuthority.nodeId">
+                        <option ng-repeat="c in PractitionerAssigningAuthorityList.CodeTable" value="{{ c.NodeId }}"
+                                ng-selected="{{ CurrentPractitioner.AssigningAuthority.nodeId == c.NodeId }}">{{ c.Description }}</option>
+                    </select>
+                    </span>
+                </div>
 
-                <!--<div class="row topMargin">-->
-                <!--<span class="col-md-4 right"><label class="control-label" for="txtName">Name:</label></span>-->
-                <!--<span class="col-md-6"><input id="txtName" class="form-control" type="text" ng-model="application.signature.Name"></span>-->
-                <!--</div>-->
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtEffectiveDateAtLocation">Effective Date at location:</label></span>
+                    <span class="col-md-6"><input id="txtEffectiveDateAtLocation" class="form-control" type="text" readonly="readonly"
+                                                  value="{{CurrentPractitioner.EffectiveDateAtLocation | date: 'MM-dd-yyyy'}}"></span>
+                </div>
 
-                <!--<div class="row topMargin">-->
-                <!--<span class="col-md-4 right"><label class="control-label" for="txtOccupationTitle">Occupation Title:</label></span>-->
-                <!--<span class="col-md-6"><input id="txtOccupationTitle" class="form-control" type="text" ng-model="application.signature.OccupationTitle"></span>-->
-                <!--</div>-->
+                <br />
 
-                <!--<div class="row topMargin">-->
-                <!--<span class="col-md-4 right"><label class="control-label" for="txtPhone">Contact Phone Number:</label></span>-->
-                <!--<span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="application.signature.Phone"></span>-->
-                <!--</div>-->
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtRegistrationNumber">Registration Number:</label></span>
+                    <span class="col-md-6"><input id="txtRegistrationNumber" class="form-control" type="text"
+                                                  ng-model="CurrentPractitioner.RegistrationNumber"></span>
+                </div>
 
-                <!--<div class="row topMargin">-->
-                <!--<span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>-->
-                <!--<span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="application.signature.Email"></span>-->
-                <!--</div>-->
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtEffectiveDateOfRegistration">Effective Date of Registration:</label></span>
+                    <span class="col-md-6"><input id="txtEffectiveDateOfRegistration" class="form-control" type="text" readonly="readonly"
+                                                  value="{{CurrentPractitioner.EffectiveDateOfRegistration | date: 'MM-dd-yyyy'}}"></span>
+                </div>
+
+                <br />
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtTitle">Title:</label></span>
+                    <span class="col-md-6"><input id="txtTitle" class="form-control" type="text" ng-model="CurrentPractitioner.Person.title"></span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtFirstName">First Name:</label></span>
+                    <span class="col-md-6"><input id="txtFirstName" class="form-control" type="text" ng-model="CurrentPractitioner.Person.firstName"></span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtMiddleName">Middle Name:</label></span>
+                    <span class="col-md-6"><input id="txtMiddleName" class="form-control" type="text" ng-model="CurrentPractitioner.Person.middleName"></span>
+                </div>
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtLastName">Last Name:</label></span>
+                    <span class="col-md-6"><input id="txtLastName" class="form-control" type="text" ng-model="CurrentPractitioner.Person.lastName"></span>
+                </div>
+
+                <br />
+
+                <div class="row topMargin">
+                    <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
+                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="CurrentPractitioner.Email"></span>
+                </div>
+
 
                 <br />
 
                 <div class="row topMargin" align="center">
-                    <span class="col-md-6"><a href="#/provider" class="btn btn-md-large btn-primary">Back to Provider</a></span>
-                    <span class="col-md-6"><a href="#/corporateContact" class="btn btn-md-large btn-primary">Next Step</a></span>
+                    <span><button class="btn btn-md-large btn-primary" ng-click="Application.savePractitioner(CurrentPractitioner)">Save</button></span>
+                    <span><button class="btn btn-md-large btn-primary" ng-click="SetNewPractitionerToCurrent()">Clear</button></span>
                 </div>
-                <br />
 
 
             </div>
@@ -63,7 +137,14 @@
         </fieldset>
 
 
+        <br /><br />
 
+        <div class="row topMargin" align="center">
+            <span class="col-md-6"><a href="#/provider" class="btn btn-md-large btn-primary">Back to Provider</a></span>
+            <span class="col-md-6"><a href="#/corporateContact" class="btn btn-md-large btn-primary">Next Step</a></span>
+        </div>
+
+        <br />
 
 
     </form>

@@ -2,7 +2,7 @@
 
 <div id="divProvider">
 
-    <form role="form" class="form-horizontal">
+    <form role="form" class="form-horizontal" name="frmProvider">
 
         <fieldset>
 
@@ -23,7 +23,9 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtLegalName">Legal Name:</label></span>
-                    <span class="col-md-6"><input id="txtLegalName" class="form-control" type="text" ng-model="Application.Provider.LegalName"></span>
+                    <span class="col-md-6"><input id="txtLegalName" class="form-control" type="text" required
+                                                  ng-model="Application.Provider.LegalName"
+                                                  placeholder="Enter the legal name of your business"></span>
                 </div>
 
             </div>
@@ -34,42 +36,48 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAddress1">Address Line 1:</label></span>
-                    <span class="col-md-6"><input id="txtAddress1" class="form-control" type="text" ng-model="Application.Provider.Address.line1"></span>
+                    <span class="col-md-6"><input id="txtAddress1" class="form-control" type="text" ng-model="Application.Provider.Address.line1"
+                                                  required placeholder="Required"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAddress2">Address Line 2:</label></span>
-                    <span class="col-md-6"><input id="txtAddress2" class="form-control" type="text" ng-model="Application.Provider.Address.line2"></span>
+                    <span class="col-md-6"><input id="txtAddress2" class="form-control" type="text" ng-model="Application.Provider.Address.line2"
+                                                  placeholder="Optional"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAddress3">Address Line 3:</label></span>
-                    <span class="col-md-6"><input id="txtAddress3" class="form-control" type="text" ng-model="Application.Provider.Address.line3"></span>
+                    <span class="col-md-6"><input id="txtAddress3" class="form-control" type="text" ng-model="Application.Provider.Address.line3"
+                                                  placeholder="Optional"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtCity">City:</label></span>
-                    <span class="col-md-6"><input id="txtCity" class="form-control" type="text" ng-model="Application.Provider.Address.city"></span>
+                    <span class="col-md-6"><input id="txtCity" class="form-control" type="text" ng-model="Application.Provider.Address.city"
+                                                  required placeholder="Required"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddpProvince">Province:</label></span>
                     <span class="col-md-6">
                         <select id="ddpProvince" class="form-control" ng-model="Application.Provider.Address.province.nodeId">
-                            <option ng-repeat="c in ProvinceList.CodeTable" value="{{c.NodeId}}"
-                                    ng-selected="{{Application.Provider.Address.province.nodeId == c.NodeId}}">{{c.Description}}</option>
+                            <option ng-repeat="c in ProvinceList.CodeTable" value="{{ c.NodeId }}"
+                                    ng-selected="{{ Application.Provider.Address.province.nodeId == c.NodeId }}">{{ c.Description }}</option>
                         </select>
                     </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtPostalCode">Postal Code:</label></span>
-                    <span class="col-md-6"><input id="txtPostalCode" class="form-control" type="text" ng-model="Application.Provider.Address.postalCode" placeholder="V9W 2T8"></span>
+                    <span class="col-md-6"><input id="txtPostalCode" class="form-control" type="text" ng-model="Application.Provider.Address.postalCode"
+                                                  required placeholder="example: V9W 2T8"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtCountry">Country:</label></span>
-                    <span class="col-md-6"><input id="txtCountry" class="form-control" type="text" ng-model="Application.Provider.Address.country.name" ng-disabled="true"></span>
+                    <span class="col-md-6"><input id="txtCountry" class="form-control" type="text" ng-model="Application.Provider.Address.country.name"
+                                                  ng-disabled="true" title="Only support the providers registered in Canada"></span>
                 </div>
 
             </div>
@@ -90,7 +98,8 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
-                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="Application.Provider.Email" placeholder="yourname@domain.com"></span>
+                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="Application.Provider.Email"
+                                                  required placeholder="example: yourname@domain.com"></span>
                 </div>
 
 
@@ -106,10 +115,6 @@
             </div>
 
         </fieldset>
-
-
-
-
 
     </form>
 
