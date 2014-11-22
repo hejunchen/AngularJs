@@ -29,10 +29,10 @@ app.service('CorporateContactService', function(){
 
     var CorporateContact = {
         Person: {
-            title: '',
-            firstName: '',
-            middleName: '',
-            lastName: ''
+            Title: '',
+            FirstName: '',
+            MiddleName: '',
+            LastName: ''
         },
         Phone: '',
         Email: '',
@@ -54,22 +54,29 @@ app.service('CorporateContactService', function(){
 
 app.service('PractitionerService', function(){
 
+    function S4() {
+        return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    }
 
-    var Practitioner = {
-        Guid: '',
-        Category: { nodeId: -1, name: ''},
-        AssigningAuthority: { nodeId: -1, name: ''},
-        EffectiveDateAtLocation: new Date(),
-        RegistrationNumber: '',
-        EffectiveDateOfRegistration: new Date(),
-        Person: {
-            title: '',
-            firstName: '',
-            middleName: '',
-            lastName: ''
-        },
-        Email: '',
-        PrintAll: function(){
+    function NewGuid(){
+        return (S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    }
+
+    var Practitioner = {};
+    var Init = function(){
+        Practitioner.Guid = NewGuid();
+        Practitioner.SeqNum = -1;
+        Practitioner.Category = { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1};
+        Practitioner.AssigningAuthority = { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1};
+        Practitioner.EffectiveDateAtLocation = new Date();
+        Practitioner.RegistrationNumber = '';
+        Practitioner.EffectiveDateOfRegistration = new Date();
+        Practitioner.Person = {Title: '',
+            FirstName: '',
+            MiddleName: '',
+            LastName: ''};
+        Practitioner.Email = '';
+        PrintAll = function(){
             console.log('Print All for: Practitioner');
             console.log('Guid: ' + this.Guid);
             console.log('Category: ' + this.Category);
@@ -79,10 +86,11 @@ app.service('PractitionerService', function(){
             console.log('EffectiveDateOfRegistration: ' + this.EffectiveDateOfRegistration);
             console.log('Person: ' + this.Person);
             console.log('Email: ' + this.Email);
-        }
-    };
+        };
+    }
 
     var GetPractitioner = function(){
+        Init();
         return Practitioner;
     }
 
@@ -93,23 +101,23 @@ app.service('PractitionerService', function(){
 app.service('ProviderService', function(){
 
     var Provider = {
-        Category: { nodeId: 5005, name: 'Chiropractic'},
+        Category: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
         LegalName: 'Test Legal Name',
         Address: {
-            line1: '',
-            line2: '',
-            line3: '',
-            city: '',
-            province: { nodeId: 2, name: 'British Columbia'},
-            postalCode: '',
-            country: { nodeId: 1, name: 'Canada' }
+            Line1: '',
+            Line2: '',
+            Line3: '',
+            City: '',
+            Province: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
+            PostalCode: '',
+            Country: { CodeItemId: 0, CodeType: 'COUNTRY', Description: 'Canada', LanguageId: 1, LevelNo: 1, Mnemonic: 'CAN', NodeId: 1, ParentLevelNo: 0, ParentNodeId: 0}
         },
         Phone: '',
         Fax: '',
         Email: '',
         BusinessLicense: { number: '', effectiveDate: new Date() },
         IsOpticalStore: function(){
-            return this.Category.nodeId === 5011;
+            return this.Category.NodeId === 5011;
         },
         PrintAll: function(){
             console.log('Print All for: Provider');
@@ -174,50 +182,17 @@ app.service('ApplicationService', ['SignatureService','ProviderService','Practit
             }
         }
 
-
         var GetApplication = function(){
             return Application;
         }
 
         var GetEmptyPractitioner = function(){
-            return new PractitionerService.getPractitioner();
-        }
-
-        var DeletePractitioner = function(practitioner){
-            this.Application.Practitioners.remove(practitioner);
-        }
-
-        var AddPractitioner = function(practitioner){
-            this.Application.Practitioners.push(practitioner);
-        }
-
-        var SavePractitioner = function(practitioner){
-
-            var isNew = false;
-            for(var i=0; i<=this.Application.Practitioners.length-1; i++)
-            {
-                if(this.Application.Practitioners[i].Guid == practitioner.Guid)
-                {
-                    isNew = true;
-                    this.Application.Practitioners[i] = practitioner;
-                }
-            }
-
-            console.log('Found New: ' + isNew);
-
-            if (!isNew)
-            {
-                AddPractitioner(practitioner);
-            }
-
+            return PractitionerService.getPractitioner();
         }
 
         return {
             getApplication: GetApplication,
-            getEmptyPractitioner: GetEmptyPractitioner,
-            deletePractitioner: DeletePractitioner,
-            addPractitioner: AddPractitioner,
-            savePractitioner: SavePractitioner
+            getEmptyPractitioner: GetEmptyPractitioner
         };
 
 }]);

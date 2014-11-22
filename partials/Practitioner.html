@@ -12,20 +12,26 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <!--<td>Guid</td>-->
                         <td>#</td>
                         <td>Name</td>
                         <td>Category</td>
                         <td>Effective Date</td>
                         <td>Email Address</td>
+                        <td>Action</td>
                     </tr>
                 </thead>
                 <tbody ng-hide="Application.Practitioners.length == 0">
                     <tr ng-repeat="p in Application.Practitioners">
-                        <td></td>
-                        <td>{{p.Person.firstName + ' ' + p.Person.lastName}}</td>
-                        <td>{{p.Category.name}}</td>
+                        <!--<td>{{p.Guid}}</td>-->
+                        <td>{{p.SeqNum}}</td>
+                        <td>{{p.Person.FirstName + ' ' + p.Person.LastName}}</td>
+                        <td>{{p.Category.Description}}</td>
                         <td>{{p.EffectiveDateAtLocation | date: 'MM-dd-yyyy'}}</td>
                         <td>{{p.Email}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" ng-click="EditPractitioner(p)">Edit</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -33,7 +39,7 @@
         </div>
 
         <div class="row topMargin" align="center">
-            <span><button class="btn btn-md-large btn-primary" ng-click="SetNewPractitionerToCurrent()">New</button></span>
+            <span><button id="btnAdd" class="btn btn-md-large btn-primary" ng-click="SetNewPractitionerToCurrent()">Add a New Practitioner</button></span>
         </div>
 
         <br />
@@ -46,9 +52,10 @@
 
         <fieldset>
 
-            <legend class="form-signin-heading">Add or Edit</legend>
-
-
+            <legend class="form-signin-heading">
+                <span ng-show="CurrentPractitioner.SeqNum === -1">Add a new practitioner</span>
+                <span ng-hide="CurrentPractitioner.SeqNum === -1">Edit an existing practitioner</span>
+            </legend>
 
             <br />
 
@@ -57,20 +64,18 @@
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddlPractitionerCategory">Practitioner Category:</label></span>
                     <span class="col-md-6">
-                    <select id="ddlPractitionerCategory" class="form-control" ng-model="CurrentPractitioner.Category.nodeId">
-                        <option ng-repeat="c in PractitionerCategoryList.CodeTable" value="{{ c.NodeId }}"
-                                ng-selected="{{ CurrentPractitioner.Category.nodeId == c.NodeId }}">{{ c.Description }}</option>
-                    </select>
+                        <select id="ddlPractitionerCategory" class="form-control" ng-model="CurrentPractitioner.Category"
+                                ng-options="c as c.Description for c in PractitionerCategoryList.CodeTable">
+                        </select>
                     </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddlPractitionerAssigningAuthority">Regulatory/Licensing Body:</label></span>
                     <span class="col-md-6">
-                    <select id="ddlPractitionerAssigningAuthority" class="form-control" ng-model="CurrentPractitioner.AssigningAuthority.nodeId">
-                        <option ng-repeat="c in PractitionerAssigningAuthorityList.CodeTable" value="{{ c.NodeId }}"
-                                ng-selected="{{ CurrentPractitioner.AssigningAuthority.nodeId == c.NodeId }}">{{ c.Description }}</option>
-                    </select>
+                        <select id="ddlPractitionerAssigningAuthority" class="form-control" ng-model="CurrentPractitioner.AssigningAuthority"
+                                ng-options="c as c.Description for c in PractitionerAssigningAuthorityList.CodeTable">
+                        </select>
                     </span>
                 </div>
 
@@ -98,22 +103,22 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtTitle">Title:</label></span>
-                    <span class="col-md-6"><input id="txtTitle" class="form-control" type="text" ng-model="CurrentPractitioner.Person.title"></span>
+                    <span class="col-md-6"><input id="txtTitle" class="form-control" type="text" ng-model="CurrentPractitioner.Person.Title"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtFirstName">First Name:</label></span>
-                    <span class="col-md-6"><input id="txtFirstName" class="form-control" type="text" ng-model="CurrentPractitioner.Person.firstName"></span>
+                    <span class="col-md-6"><input id="txtFirstName" class="form-control" type="text" ng-model="CurrentPractitioner.Person.FirstName"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtMiddleName">Middle Name:</label></span>
-                    <span class="col-md-6"><input id="txtMiddleName" class="form-control" type="text" ng-model="CurrentPractitioner.Person.middleName"></span>
+                    <span class="col-md-6"><input id="txtMiddleName" class="form-control" type="text" ng-model="CurrentPractitioner.Person.MiddleName"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtLastName">Last Name:</label></span>
-                    <span class="col-md-6"><input id="txtLastName" class="form-control" type="text" ng-model="CurrentPractitioner.Person.lastName"></span>
+                    <span class="col-md-6"><input id="txtLastName" class="form-control" type="text" ng-model="CurrentPractitioner.Person.LastName"></span>
                 </div>
 
                 <br />
@@ -123,12 +128,11 @@
                     <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="CurrentPractitioner.Email"></span>
                 </div>
 
-
                 <br />
 
                 <div class="row topMargin" align="center">
-                    <span><button class="btn btn-md-large btn-primary" ng-click="Application.savePractitioner(CurrentPractitioner)">Save</button></span>
-                    <span><button class="btn btn-md-large btn-primary" ng-click="SetNewPractitionerToCurrent()">Clear</button></span>
+                    <span><button class="btn btn-md-large btn-primary" ng-click="SavePractitioner(CurrentPractitioner)">Save</button></span>
+                    <span><button class="btn btn-md-large btn-danger" ng-disabled="CurrentPractitioner.SeqNum === -1" ng-click="DeletePractitioner(CurrentPractitioner)">Delete</button></span>
                 </div>
 
 

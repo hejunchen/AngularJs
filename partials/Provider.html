@@ -13,11 +13,9 @@
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddpProviderCategory">Provider Category:</label></span>
                     <span class="col-md-6">
-                        <select id="ddpProviderCategory" class="form-control" ng-model="Application.Provider.Category.nodeId">
-                            <option ng-repeat="c in ProviderCategoryList.CodeTable" value="{{c.NodeId}}"
-                                    ng-selected="{{Application.Provider.Category.nodeId == c.NodeId}}">{{c.Description}}</option>
+                        <select id="ddpProviderCategory" class="form-control" ng-model="Application.Provider.Category"
+                                ng-options="c as c.Description for c in ProviderCategoryList.CodeTable">
                         </select>
-
                     </span>
                 </div>
 
@@ -36,47 +34,46 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAddress1">Address Line 1:</label></span>
-                    <span class="col-md-6"><input id="txtAddress1" class="form-control" type="text" ng-model="Application.Provider.Address.line1"
+                    <span class="col-md-6"><input id="txtAddress1" class="form-control" type="text" ng-model="Application.Provider.Address.Line1"
                                                   required placeholder="Required"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAddress2">Address Line 2:</label></span>
-                    <span class="col-md-6"><input id="txtAddress2" class="form-control" type="text" ng-model="Application.Provider.Address.line2"
+                    <span class="col-md-6"><input id="txtAddress2" class="form-control" type="text" ng-model="Application.Provider.Address.Line2"
                                                   placeholder="Optional"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAddress3">Address Line 3:</label></span>
-                    <span class="col-md-6"><input id="txtAddress3" class="form-control" type="text" ng-model="Application.Provider.Address.line3"
+                    <span class="col-md-6"><input id="txtAddress3" class="form-control" type="text" ng-model="Application.Provider.Address.Line3"
                                                   placeholder="Optional"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtCity">City:</label></span>
-                    <span class="col-md-6"><input id="txtCity" class="form-control" type="text" ng-model="Application.Provider.Address.city"
+                    <span class="col-md-6"><input id="txtCity" class="form-control" type="text" ng-model="Application.Provider.Address.City"
                                                   required placeholder="Required"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddpProvince">Province:</label></span>
                     <span class="col-md-6">
-                        <select id="ddpProvince" class="form-control" ng-model="Application.Provider.Address.province.nodeId">
-                            <option ng-repeat="c in ProvinceList.CodeTable" value="{{ c.NodeId }}"
-                                    ng-selected="{{ Application.Provider.Address.province.nodeId == c.NodeId }}">{{ c.Description }}</option>
+                        <select id="ddpProvince" class="form-control" ng-model="Application.Provider.Address.Province"
+                                ng-options="c as c.Description for c in ProvinceList.CodeTable">
                         </select>
                     </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtPostalCode">Postal Code:</label></span>
-                    <span class="col-md-6"><input id="txtPostalCode" class="form-control" type="text" ng-model="Application.Provider.Address.postalCode"
+                    <span class="col-md-6"><input id="txtPostalCode" class="form-control" type="text" ng-model="Application.Provider.Address.PostalCode"
                                                   required placeholder="example: V9W 2T8"></span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtCountry">Country:</label></span>
-                    <span class="col-md-6"><input id="txtCountry" class="form-control" type="text" ng-model="Application.Provider.Address.country.name"
+                    <span class="col-md-6"><input id="txtCountry" class="form-control" type="text" ng-model="Application.Provider.Address.Country.Description"
                                                   ng-disabled="true" title="Only support the providers registered in Canada"></span>
                 </div>
 
