@@ -26,6 +26,25 @@
                                                   placeholder="Enter the legal name of your business"></span>
                 </div>
 
+                <div ng-show="Application.Provider.IsOpticalStore()">
+
+                    <div class="row topMargin">
+                        <span class="col-md-4 right"><label class="control-label" for="txtBusinessLicenseNumber">Business License Number:</label></span>
+                        <span class="col-md-6"><input id="txtBusinessLicenseNumber" class="form-control" type="text" required
+                                                  ng-model="Application.Provider.BusinessLicense.Number"
+                                                  placeholder="Enter your business license number"></span>
+                    </div>
+
+                    <div class="row topMargin">
+                        <span class="col-md-4 right"><label class="control-label" for="txtBusinessLicenseDate">Business License Date:</label></span>
+                        <span class="col-md-6"><input id="txtBusinessLicenseDate" class="form-control datepicker" type="text" ng-readonly="true"
+                                                  value="{{Application.Provider.BusinessLicense.EffectiveDate | date: 'MM-dd-yyyy'}}"></span>
+                    </div>
+
+
+
+                </div>
+
             </div>
 
             <br />
@@ -116,3 +135,7 @@
     </form>
 
 </div>
+
+<script>
+    ReloadScripts();
+</script>

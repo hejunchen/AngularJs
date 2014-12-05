@@ -13,7 +13,7 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAppDate">Date:</label></span>
-                    <span class="col-md-6"><input id="txtAppDate" class="form-control" type="text" readonly="readonly"
+                    <span class="col-md-6"><input id="txtAppDate" class="form-control" type="text" title="This is the current date. Readonly." readonly="readonly" disabled
                                                   value="{{Application.Signature.AppDate | date: 'MM-dd-yyyy'}}"></span>
                 </div>
 
@@ -59,10 +59,6 @@
             </div>
 
         </fieldset>
-
-
-
-
 
     </form>
 

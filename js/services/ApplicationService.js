@@ -29,13 +29,14 @@ app.service('CorporateContactService', function(){
 
     var CorporateContact = {
         Person: {
-            Title: '',
+            Title: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
             FirstName: '',
             MiddleName: '',
             LastName: ''
         },
         Phone: '',
-        Email: '',
+        Email: 'CorpCon@pac.com',
+        UseSignatureEmail: false,
         PrintAll: function () {
             console.log('Print All for: CorporateContact');
             console.log('Person: ' + this.Person);
@@ -71,7 +72,8 @@ app.service('PractitionerService', function(){
         Practitioner.EffectiveDateAtLocation = new Date();
         Practitioner.RegistrationNumber = '';
         Practitioner.EffectiveDateOfRegistration = new Date();
-        Practitioner.Person = {Title: '',
+        Practitioner.Person = {
+            Title: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
             FirstName: '',
             MiddleName: '',
             LastName: ''};
@@ -115,9 +117,11 @@ app.service('ProviderService', function(){
         Phone: '',
         Fax: '',
         Email: '',
-        BusinessLicense: { number: '', effectiveDate: new Date() },
+        BusinessLicense: { Number: '', EffectiveDate: new Date() },
         IsOpticalStore: function(){
-            return this.Category.NodeId === 5011;
+            var result = (this.Category.NodeId === 5011);
+            console.log('IsOpticalStore: ' + result);
+            return result;
         },
         PrintAll: function(){
             console.log('Print All for: Provider');
@@ -147,7 +151,7 @@ app.service('SignatureService', function(){
         Name: 'Hejun Chen',
         OccupationTitle: '',
         Phone: '',
-        Email: '',
+        Email: 'signature@pac.com',
         PrintAll: function(){
             console.log('Print All for: Signature');
             console.log('AppDate: ' + this.AppDate);

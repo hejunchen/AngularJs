@@ -51,6 +51,9 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
                 $scope.PractitionerAssigningAuthorityList = data;
             });
 
+            CodeTableLoaderService.getCodeTableByType('Title').then(function(data){
+                $scope.TitleList = data;
+            });
 
             $scope.CurrentPractitioner = null;
 
@@ -111,6 +114,8 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
 
             $scope.CurrentPractitioner = null;
 
+            $scope.SetNewPractitionerToCurrent();
+
         }
 
         $scope.EditPractitioner = function(practitioner){
@@ -134,21 +139,17 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
 
         }
 
+        $scope.SetSignatureEmailToCorporateContact = function()
+        {
+            if($scope.Application.CorporateContact.UseSignatureEmail == true)
+                $scope.Application.CorporateContact.Email = $scope.Application.Signature.Email;
+            else
+                $scope.Application.CorporateContact.Email = '';
+        }
 
 
 
 
-
-
-        //$scope.GetCodeTable_ProviderCategoryList(CodeTableLoaderService);
-
-
-
-
-        //$scope.GetCodeTable_ProviderCategoryList();
-
-//        console.log('Print out the Provider Category List Here:');
-//        console.log($scope.Application.ProviderCategoryList);
 
     }]
 );

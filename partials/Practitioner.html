@@ -12,7 +12,6 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <!--<td>Guid</td>-->
                         <td>#</td>
                         <td>Name</td>
                         <td>Category</td>
@@ -23,7 +22,6 @@
                 </thead>
                 <tbody ng-hide="Application.Practitioners.length == 0">
                     <tr ng-repeat="p in Application.Practitioners">
-                        <!--<td>{{p.Guid}}</td>-->
                         <td>{{p.SeqNum}}</td>
                         <td>{{p.Person.FirstName + ' ' + p.Person.LastName}}</td>
                         <td>{{p.Category.Description}}</td>
@@ -35,7 +33,7 @@
                     </tr>
                 </tbody>
             </table>
-            <div ng-show="Application.Practitioners.length == 0"><p>No practitioners in the current application.</p></div>
+            <div align="center" ng-show="Application.Practitioners.length == 0"><p>No practitioners in the current application.</p></div>
         </div>
 
         <div class="row topMargin" align="center">
@@ -48,16 +46,17 @@
 
     <br />
 
+
     <form role="form" class="form-horizontal" ng-show="CurrentPractitioner != null" >
+    <fieldset>
 
-        <fieldset>
+        <legend class="form-signin-heading">
+            <span ng-show="CurrentPractitioner.SeqNum === -1">Add a new practitioner</span>
+            <span ng-hide="CurrentPractitioner.SeqNum === -1">Edit an existing practitioner</span>
+        </legend>
 
-            <legend class="form-signin-heading">
-                <span ng-show="CurrentPractitioner.SeqNum === -1">Add a new practitioner</span>
-                <span ng-hide="CurrentPractitioner.SeqNum === -1">Edit an existing practitioner</span>
-            </legend>
+        <br />
 
-            <br />
 
             <div class="form-group form-group-md">
 
@@ -81,7 +80,7 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtEffectiveDateAtLocation">Effective Date at location:</label></span>
-                    <span class="col-md-6"><input id="txtEffectiveDateAtLocation" class="form-control" type="text" readonly="readonly"
+                    <span class="col-md-6"><input id="txtEffectiveDateAtLocation" class="form-control datepicker" type="text" readonly="readonly"
                                                   value="{{CurrentPractitioner.EffectiveDateAtLocation | date: 'MM-dd-yyyy'}}"></span>
                 </div>
 
@@ -95,15 +94,19 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtEffectiveDateOfRegistration">Effective Date of Registration:</label></span>
-                    <span class="col-md-6"><input id="txtEffectiveDateOfRegistration" class="form-control" type="text" readonly="readonly"
+                    <span class="col-md-6"><input id="txtEffectiveDateOfRegistration" class="form-control datepicker" type="text" readonly="readonly"
                                                   value="{{CurrentPractitioner.EffectiveDateOfRegistration | date: 'MM-dd-yyyy'}}"></span>
                 </div>
 
                 <br />
 
                 <div class="row topMargin">
-                    <span class="col-md-4 right"><label class="control-label" for="txtTitle">Title:</label></span>
-                    <span class="col-md-6"><input id="txtTitle" class="form-control" type="text" ng-model="CurrentPractitioner.Person.Title"></span>
+                    <span class="col-md-4 right"><label class="control-label" for="ddlTitle">Title:</label></span>
+                    <span class="col-md-6">
+                        <select id="ddlTitle" class="form-control" ng-model="CurrentPractitioner.Person.Title"
+                                ng-options="c as c.Description for c in TitleList.CodeTable">
+                        </select>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
@@ -135,22 +138,25 @@
                     <span><button class="btn btn-md-large btn-danger" ng-disabled="CurrentPractitioner.SeqNum === -1" ng-click="DeletePractitioner(CurrentPractitioner)">Delete</button></span>
                 </div>
 
+                <br />
 
             </div>
 
-        </fieldset>
-
-
-        <br /><br />
-
-        <div class="row topMargin" align="center">
-            <span class="col-md-6"><a href="#/provider" class="btn btn-md-large btn-primary">Back to Provider</a></span>
-            <span class="col-md-6"><a href="#/corporateContact" class="btn btn-md-large btn-primary">Next Step</a></span>
-        </div>
-
-        <br />
-
+    </fieldset>
 
     </form>
+    <br /><br />
+
+    <div class="row topMargin" align="center">
+        <span class="col-md-6"><a href="#/provider" class="btn btn-md-large btn-primary">Back to Provider</a></span>
+        <span class="col-md-6"><a href="#/corporateContact" class="btn btn-md-large btn-primary">Next Step</a></span>
+    </div>
+
+    <br />
+
 
 </div>
+
+<script>
+    ReloadScripts();
+</script>
