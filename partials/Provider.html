@@ -37,8 +37,18 @@
 
                     <div class="row topMargin">
                         <span class="col-md-4 right"><label class="control-label" for="txtBusinessLicenseDate">Business License Date:</label></span>
-                        <span class="col-md-6"><input id="txtBusinessLicenseDate" class="form-control datepicker" type="text" ng-readonly="true"
-                                                  value="{{Application.Provider.BusinessLicense.EffectiveDate | date: 'MM-dd-yyyy'}}"></span>
+                        <span class="col-md-6">
+                            <div class="input-group input-group-md date">
+                                <input id="txtBusinessLicenseDate"
+                                       class="form-control" type="text" readonly="readonly"
+                                       value="{{Application.Provider.BusinessLicense.EffectiveDate | date: 'MM-dd-yyyy'}}">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" title="Click to select a date">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </span>
                     </div>
 
 
@@ -122,8 +132,8 @@
                 <br />
 
                 <div class="row topMargin" align="center">
-                    <span class="col-md-6"><a href="#/signature" class="btn btn-md-large btn-primary">Back to Signature</a></span>
-                    <span class="col-md-6"><a href="#/practitioners" class="btn btn-md-large btn-primary">Next Step</a></span>
+                    <span class="col-md-6"><a href="#/signature" class="btn btn-lg btn-primary">Back to Signature</a></span>
+                    <span class="col-md-6"><a href="#/practitioners" class="btn btn-lg btn-primary">Next Step</a></span>
                 </div>
                 <br />
 

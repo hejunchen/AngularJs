@@ -13,8 +13,11 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAppDate">Date:</label></span>
-                    <span class="col-md-6"><input id="txtAppDate" class="form-control" type="text" title="This is the current date. Readonly." readonly="readonly" disabled
-                                                  value="{{Application.Signature.AppDate | date: 'MM-dd-yyyy'}}"></span>
+                    <span class="col-md-6">
+                        <input class="form-control" id="txtAppDate" title="This is a readonly value (default to current date)"
+                               data-toggle="tooltip" data-placement="right"
+                               type="text" title="This is the current date. Readonly." disabled
+                               value="{{Application.Signature.AppDate | date: 'MM-dd-yyyy'}}"></span>
                 </div>
 
                 <div class="row topMargin">
@@ -50,8 +53,8 @@
                 <br />
 
                 <div class="row topMargin" align="center">
-                    <span class="col-md-6"><a href="#" class="btn btn-md-large btn-primary">Back to Welcome page</a></span>
-                    <span class="col-md-6"><a href="#/provider" class="btn btn-md-large btn-primary">Next Step</a></span>
+                    <span class="col-md-6"><a href="#" class="btn btn-lg btn-primary">Back to Welcome page</a></span>
+                    <span class="col-md-6"><a href="#/provider" class="btn btn-lg btn-primary">Next Step</a></span>
                 </div>
                 <br />
 
@@ -63,4 +66,3 @@
     </form>
 
 </div>
-

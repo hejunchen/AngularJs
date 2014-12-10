@@ -69,10 +69,10 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
 
         $scope.SavePractitioner = function(practitioner){
 
-            var fullName = practitioner.Person.FirstName + ' ' + practitioner.Person.LastName;
-            var category = practitioner.Category.Description;
-            var email = practitioner.Email ;
-            var messageBody = category + ': ' + fullName + ' (' + email + ')';
+//            var fullName = practitioner.Person.FirstName + ' ' + practitioner.Person.LastName;
+//            var category = practitioner.Category.Description;
+//            var email = practitioner.Email ;
+//            var messageBody = category + ': ' + fullName + ' (' + email + ')';
 
 
             var isNew = true;
@@ -84,7 +84,7 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
                     var newPract = {};
                     jQuery.extend(newPract, practitioner);
                     $scope.Application.Practitioners[i] = newPract;
-                    swal('Saved!', messageBody, 'success');
+//                    swal('Saved!', messageBody, 'success');
                 }
             }
 
@@ -94,7 +94,7 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
                 var newPract = {};
                 jQuery.extend(newPract, practitioner);
                 $scope.Application.Practitioners.push(newPract);
-                swal('Added', messageBody, 'success');
+//                swal('Added', messageBody, 'success');
                 console.log('new pract is added');
             }
             else
@@ -114,7 +114,7 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
 
             $scope.CurrentPractitioner = null;
 
-            $scope.SetNewPractitionerToCurrent();
+            //$scope.SetNewPractitionerToCurrent();
 
         }
 
@@ -130,7 +130,7 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
             {
                 var index = $scope.Application.Practitioners.indexOf(practitioner);
                 $scope.Application.Practitioners.splice(index,1);
-                swal('Deleted!!', 'You have removed a practitioner!', 'success');
+//                swal('Deleted!!', 'You have removed a practitioner!', 'success');
                 $scope.CurrentPractitioner = null;
                 return true;
             }

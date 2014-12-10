@@ -6,13 +6,16 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/themes/base/minified/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/datepicker.css">
+    <link rel="stylesheet" href="css/datepicker3.css">
+    <!--<link rel="stylesheet" href="css/themes/base/minified/jquery-ui.min.css">-->
     <link rel="stylesheet" href="css/Site.css">
     <link rel="stylesheet" href="css/sweet-alert.css">
 
     <script src="lib/jquery-2.1.0.min.js"></script>
-    <script src="lib/jquery-ui-1.10.4.min.js"></script>
+    <!--<script src="lib/jquery-ui-1.10.4.min.js"></script>-->
     <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/bootstrap-datepicker.js"></script>
 
     <script src="lib/sweet-alert.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
@@ -22,18 +25,22 @@
     <script src="js/services/ApplicationService.js"></script>
     <script src="js/controllers/ApplicationController.js"></script>
 
+    <style>
+        .datepicker {z-index: 1151 !important;}
+    </style>
 
     <script>
         function ReloadScripts(){
-            $('.datepicker').datepicker({
-                dateFormat: 'mm-dd-yy',
-                changeMonth: true,
-                changeYear: true,
-                showButtonPanel: true,
-                showAnim: 'fadeIn',
-                maxDate: new Date()
+            $('.date').datepicker({
+                format: 'mm-dd-yyyy',
+                todayBtn: "linked",
+                endDate: new Date(),
+                autoclose: true,
+                language: "en",
+                forceParse: true
             });
         }
+
     </script>
 
 

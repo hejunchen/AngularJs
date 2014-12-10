@@ -120,7 +120,6 @@ app.service('ProviderService', function(){
         BusinessLicense: { Number: '', EffectiveDate: new Date() },
         IsOpticalStore: function(){
             var result = (this.Category.NodeId === 5011);
-            console.log('IsOpticalStore: ' + result);
             return result;
         },
         PrintAll: function(){
