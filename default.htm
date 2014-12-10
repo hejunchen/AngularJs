@@ -27,6 +27,7 @@
 
     <style>
         .datepicker {z-index: 1151 !important;}
+        .wrapper { min-height: 580px; }
     </style>
 
     <script>
@@ -62,7 +63,9 @@
 
 
         <div class="panelContent_inner" style="background-color:white; padding: 20px;" ng-controller="ApplicationController">
-            <div ng-view></div>
+            <fieldset style="padding: 1em 2em">
+                <div ng-view></div>
+            </fieldset>
         </div>
 
 

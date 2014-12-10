@@ -2,85 +2,74 @@
 
 <div id="divCorporateContact">
 
-    <form role="form" class="form-horizontal">
+    <form role="form" class="form-horizontal wrapper">
 
-        <fieldset>
+        <br />
 
-            <legend class="form-signin-heading">Corporate Contact</legend>
+        <div class="form-group form-group-md">
 
-            <br />
-            <br />
-
-
-            <div class="form-group form-group-md">
-
-                <div class="row topMargin">
-                    <span class="col-md-4 right"><label class="control-label" for="ddlTitle">Title:</label></span>
-                    <span class="col-md-6">
-                        <select id="ddlTitle" class="form-control" ng-model="CurrentPractitioner.Person.Title"
-                                ng-options="c as c.Description for c in TitleList.CodeTable">
-                        </select>
-                    </span>
-                </div>
-
-                <div class="row topMargin">
-                    <span class="col-md-4 right"><label class="control-label" for="txtFirstName">First Name:</label></span>
-                    <span class="col-md-6"><input id="txtFirstName" class="form-control" type="text" ng-model="Application.CorporateContact.Person.FirstName"></span>
-                </div>
-
-                <div class="row topMargin">
-                    <span class="col-md-4 right"><label class="control-label" for="txtMiddleName">Middle Name:</label></span>
-                    <span class="col-md-6"><input id="txtMiddleName" class="form-control" type="text" ng-model="Application.CorporateContact.Person.MiddleName"></span>
-                </div>
-
-                <div class="row topMargin">
-                    <span class="col-md-4 right"><label class="control-label" for="txtLastName">Last Name:</label></span>
-                    <span class="col-md-6"><input id="txtLastName" class="form-control" type="text" ng-model="Application.CorporateContact.Person.LastName"></span>
-                </div>
-
-                <div class="row topMargin">
-                    <span class="col-md-4 right"><label class="control-label" for="txtPhone">Phone:</label></span>
-                    <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="Application.CorporateContact.Phone"></span>
-                </div>
-
-                <br />
-                <div class="row topMargin">
-                    <span class="col-md-4 right"></span>
-                    <span class="col-md-6">
-                        <input type="checkbox" id="txtUseSignatureEmail"
-                               ng-model="Application.CorporateContact.UseSignatureEmail"
-                               ng-click="SetSignatureEmailToCorporateContact()">
-                        <label for="txtUseSignatureEmail">&nbsp;Use the same email from Signature</label>
-                    </span>
-                </div>
-
-                <div class="row topMargin">
-                    <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
-                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-disabled="Application.CorporateContact.UseSignatureEmail" ng-model="Application.CorporateContact.Email"></span>
-                </div>
-
-                <div class="row topMargin">
-                    <span class="col-md-4 right"></span>
-                    <span class="col-md-6"><p>This email address must be unique to this Primary Administrator Contact. It will be used as a login ID for PROVIDERnet. It can be the same as your provider location email address, but it CANNOT be the same as any of the practitioner email addresses.</p></span>
-                </div>
-
-                <br />
-
-                <div class="row topMargin" align="center">
-                    <span class="col-md-6"><a href="#/practitioners" class="btn btn-lg btn-primary">Back to Practitioner List</a></span>
-                    <span class="col-md-6"><a href="#/summary" class="btn btn-lg btn-primary">Go to Summary</a></span>
-                </div>
-                <br />
-
-
+            <div class="row topMargin">
+                <span class="col-md-4 right"><label class="control-label" for="ddlTitle">Title:</label></span>
+                <span class="col-md-6">
+                    <select id="ddlTitle" class="form-control" ng-model="CurrentPractitioner.Person.Title"
+                            ng-options="c as c.Description for c in TitleList.CodeTable">
+                    </select>
+                </span>
             </div>
 
-        </fieldset>
+            <div class="row topMargin">
+                <span class="col-md-4 right"><label class="control-label" for="txtFirstName">First Name:</label></span>
+                <span class="col-md-6"><input id="txtFirstName" class="form-control" type="text" ng-model="Application.CorporateContact.Person.FirstName"></span>
+            </div>
+
+            <div class="row topMargin">
+                <span class="col-md-4 right"><label class="control-label" for="txtMiddleName">Middle Name:</label></span>
+                <span class="col-md-6"><input id="txtMiddleName" class="form-control" type="text" ng-model="Application.CorporateContact.Person.MiddleName"></span>
+            </div>
+
+            <div class="row topMargin">
+                <span class="col-md-4 right"><label class="control-label" for="txtLastName">Last Name:</label></span>
+                <span class="col-md-6"><input id="txtLastName" class="form-control" type="text" ng-model="Application.CorporateContact.Person.LastName"></span>
+            </div>
+
+            <div class="row topMargin">
+                <span class="col-md-4 right"><label class="control-label" for="txtPhone">Phone:</label></span>
+                <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="Application.CorporateContact.Phone"></span>
+            </div>
+
+            <br />
+            <div class="row topMargin">
+                <span class="col-md-4 right"></span>
+                <span class="col-md-6">
+                    <input type="checkbox" id="txtUseSignatureEmail"
+                           ng-model="Application.CorporateContact.UseSignatureEmail"
+                           ng-click="SetSignatureEmailToCorporateContact()">
+                    <label for="txtUseSignatureEmail">&nbsp;Use the same email from Signature</label>
+                </span>
+            </div>
+
+            <div class="row topMargin">
+                <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
+                <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-disabled="Application.CorporateContact.UseSignatureEmail" ng-model="Application.CorporateContact.Email"></span>
+            </div>
+
+            <div class="row topMargin">
+                <span class="col-md-4 right"></span>
+                <span class="col-md-6"><p>This email address must be unique to this Primary Administrator Contact. It will be used as a login ID for PROVIDERnet. It can be the same as your provider location email address, but it CANNOT be the same as any of the practitioner email addresses.</p></span>
+            </div>
 
 
 
 
+        </div>
 
     </form>
+
+    <br />
+    <div class="row topMargin" align="center">
+        <span class="col-md-6"><a href="#/practitioners" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Back&nbsp;&nbsp;</a></span>
+        <span class="col-md-6"><a href="#/summary" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a></span>
+    </div>
+    <br />
 
 </div>
