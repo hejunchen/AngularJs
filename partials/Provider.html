@@ -2,7 +2,7 @@
 
 <div id="divProvider">
 
-    <form role="form" class="form-horizontal wrapper" name="frmProvider">
+    <form role="form" class="form-horizontal wrapper" novalidate autocomplete="off" name="frmProvider">
 
             <br />
 
@@ -11,26 +11,40 @@
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddpProviderCategory">Provider Category:</label></span>
                     <span class="col-md-6">
-                        <select id="ddpProviderCategory" class="form-control" ng-model="Application.Provider.Category"
-                                ng-options="c as c.Description for c in ProviderCategoryList.CodeTable">
+                        <select id="ddpProviderCategory" class="form-control" name="ProviderCategory" ng-model="Application.Provider.Category"
+                                ng-options="c as c.Description for c in ProviderCategoryList.CodeTable" required>
                         </select>
+                    </span>
+                    <span class="col-md-2 errorMsg" ng-show="Application.Provider.Category.CodeItemId == -1">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span>Required</span>
                     </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtLegalName">Legal Name:</label></span>
-                    <span class="col-md-6"><input id="txtLegalName" class="form-control" type="text" required
+                    <span class="col-md-6"><input id="txtLegalName" class="form-control" type="text" required name="LegalName"
                                                   ng-model="Application.Provider.LegalName"
                                                   placeholder="Enter the legal name of your business"></span>
+                    <span class="col-md-2 errorMsg" ng-show="frmProvider.LegalName.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmProvider.LegalName.$error.required">Required</span>
+                        <span ng-show="!frmProvider.LegalName.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div ng-show="Application.Provider.IsOpticalStore()">
 
                     <div class="row topMargin">
                         <span class="col-md-4 right"><label class="control-label" for="txtBusinessLicenseNumber">Business License Number:</label></span>
-                        <span class="col-md-6"><input id="txtBusinessLicenseNumber" class="form-control" type="text" required
+                        <span class="col-md-6"><input id="txtBusinessLicenseNumber" class="form-control" type="text" name="BusinessLicenseNumber" ng-required="Application.Provider.IsOpticalStore()"
                                                   ng-model="Application.Provider.BusinessLicense.Number"
                                                   placeholder="Enter your business license number"></span>
+                        <span class="col-md-2 errorMsg" ng-show="frmProvider.BusinessLicenseNumber.$invalid">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span ng-show="frmProvider.BusinessLicenseNumber.$error.required">Required</span>
+                            <span ng-show="!frmProvider.BusinessLicenseNumber.$error.required">Invalid</span>
+                        </span>
                     </div>
 
                     <div class="row topMargin">
@@ -47,9 +61,8 @@
                                 </span>
                             </div>
                         </span>
+                        <span class="col-md-2 errorMsg"></span>
                     </div>
-
-
 
                 </div>
 
@@ -61,47 +74,80 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAddress1">Address Line 1:</label></span>
-                    <span class="col-md-6"><input id="txtAddress1" class="form-control" type="text" ng-model="Application.Provider.Address.Line1"
-                                                  required placeholder="Required"></span>
+                    <span class="col-md-6"><input id="txtAddress1" class="form-control" type="text" name="AddressLine1"
+                                                  ng-model="Application.Provider.Address.Line1" required
+                                                  placeholder="Required"></span>
+                    <span class="col-md-2 errorMsg" ng-show="frmProvider.AddressLine1.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmProvider.AddressLine1.$error.required">Required</span>
+                        <span ng-show="!frmProvider.AddressLine1.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAddress2">Address Line 2:</label></span>
-                    <span class="col-md-6"><input id="txtAddress2" class="form-control" type="text" ng-model="Application.Provider.Address.Line2"
+                    <span class="col-md-6"><input id="txtAddress2" class="form-control" type="text" name="AddressLine2"
+                                                  ng-model="Application.Provider.Address.Line2"
                                                   placeholder="Optional"></span>
+                    <span class="col-md-2 errorMsg" ng-show="frmProvider.AddressLine2.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="!frmProvider.AddressLine2.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtAddress3">Address Line 3:</label></span>
-                    <span class="col-md-6"><input id="txtAddress3" class="form-control" type="text" ng-model="Application.Provider.Address.Line3"
+                    <span class="col-md-6"><input id="txtAddress3" class="form-control" type="text" name="AddressLine3"
+                                                  ng-model="Application.Provider.Address.Line3"
                                                   placeholder="Optional"></span>
+                    <span class="col-md-2 errorMsg" ng-show="frmProvider.AddressLine3.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="!frmProvider.AddressLine3.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtCity">City:</label></span>
-                    <span class="col-md-6"><input id="txtCity" class="form-control" type="text" ng-model="Application.Provider.Address.City"
+                    <span class="col-md-6"><input id="txtCity" class="form-control" type="text" name="City"
+                                                  ng-model="Application.Provider.Address.City"
                                                   required placeholder="Required"></span>
+                    <span class="col-md-2 errorMsg" ng-show="frmProvider.City.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmProvider.City.$error.required">Required</span>
+                        <span ng-show="!frmProvider.City.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddpProvince">Province:</label></span>
                     <span class="col-md-6">
-                        <select id="ddpProvince" class="form-control" ng-model="Application.Provider.Address.Province"
+                        <select id="ddpProvince" class="form-control" name="Province" ng-model="Application.Provider.Address.Province"
                                 ng-options="c as c.Description for c in ProvinceList.CodeTable">
                         </select>
+                    </span>
+                    <span class="col-md-2 errorMsg" ng-show="Application.Provider.Address.Province.CodeItemId == -1">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span>Required</span>
                     </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtPostalCode">Postal Code:</label></span>
-                    <span class="col-md-6"><input id="txtPostalCode" class="form-control" type="text" ng-model="Application.Provider.Address.PostalCode"
+                    <span class="col-md-6"><input id="txtPostalCode" class="form-control" type="text" name="PostalCode" style="text-transform: uppercase;"
+                                                  ng-model="Application.Provider.Address.PostalCode" ng-pattern="PostCodeRegex" maxlength="7"
                                                   required placeholder="example: V9W 2T8"></span>
+                    <span class="col-md-2 errorMsg" ng-show="frmProvider.PostalCode.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmProvider.PostalCode.$error.required">Required</span>
+                        <span ng-show="!frmProvider.PostalCode.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtCountry">Country:</label></span>
                     <span class="col-md-6"><input id="txtCountry" class="form-control" type="text" ng-model="Application.Provider.Address.Country.Description"
                                                   ng-disabled="true" title="Only support the providers registered in Canada"></span>
+                    <span class="col-md-2"></span>
                 </div>
 
             </div>
@@ -112,18 +158,42 @@
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtPhone">Phone Number:</label></span>
-                    <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="Application.Provider.Phone"></span>
+                    <span class="col-md-6">
+                        <input id="txtPhone" class="form-control" type="text" name="Phone" ng-pattern="PhoneRegex"
+                               ng-model="Application.Provider.Phone" required placeholder="example: 111-222-3333">
+                    </span>
+                    <span class="col-md-2 errorMsg" ng-show="frmProvider.Phone.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmProvider.Phone.$error.required">Required</span>
+                        <span ng-show="!frmProvider.Phone.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtFax">Fax Number:</label></span>
-                    <span class="col-md-6"><input id="txtFax" class="form-control" type="text" ng-model="Application.Provider.Fax"></span>
+                    <span class="col-md-6">
+                        <input id="txtFax" class="form-control" type="text" ng-pattern="PhoneRegex" name="Fax"
+                               ng-model="Application.Provider.Fax" placeholder="example: 111-222-3333">
+                    </span>
+                    <span class="col-md-2 errorMsg" ng-show="frmProvider.Fax.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmProvider.Fax.$error.required">Required</span>
+                        <span ng-show="!frmProvider.Fax.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
-                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="Application.Provider.Email"
-                                                  required placeholder="example: yourname@domain.com"></span>
+                    <span class="col-md-6">
+                        <input id="txtEmail" class="form-control" type="Email" name="Email" ng-pattern="EmailRegex"
+                                             ng-model="Application.Provider.Email"
+                                             required placeholder="example: yourname@domain.com">
+                    </span>
+                    <span class="col-md-2 errorMsg" ng-show="frmProvider.Email.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmProvider.Email.$error.required">Required</span>
+                        <span ng-show="!frmProvider.Email.$error.required">Invalid</span>
+                    </span>
                 </div>
 
             </div>
@@ -133,7 +203,7 @@
     <br />
     <div class="row topMargin" align="center">
         <span class="col-md-6"><a href="#/signature" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Back&nbsp;&nbsp;</a></span>
-        <span class="col-md-6"><a href="#/practitioners" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a></span>
+        <span class="col-md-6"><a href="#/practitioners" ng-disabled="frmProvider.$invalid || Application.Provider.IsValid() == false" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a></span>
     </div>
     <br />
 

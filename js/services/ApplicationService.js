@@ -122,6 +122,12 @@ app.service('ProviderService', function(){
             var result = (this.Category.NodeId === 5011);
             return result;
         },
+        IsValid: function(){
+            return (this.Category.CodeItemId > -1) && (this.LegalName.length > 0) &&
+                   (this.Address.Line1.length > 0) && (this.Address.City.length > 0) && (this.Address.Province.CodeItemId > -1) && (this.Address.PostalCode.length > 0) && (this.Address.Country.CodeItemId > -1) &&
+                   (this.Phone.length > 0) && (this.Email.length > 0) &&
+                   ((this.IsOpticalStore() == true && this.BusinessLicense.Number.length > 0) || (this.IsOpticalStore() == false));
+        },
         PrintAll: function(){
             console.log('Print All for: Provider');
             console.log('Category: ' + this.Category);
@@ -132,6 +138,7 @@ app.service('ProviderService', function(){
             console.log('Fax: ' + this.Fax);
             console.log('Email: ' + this.Email);
             console.log('Business License: ' + this.BusinessLicense);
+            console.log('Is Valid: ' + this.IsValid());
         }
     };
 

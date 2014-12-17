@@ -2,7 +2,7 @@
 
 <div id="divSignature">
 
-    <form role="form" class="form-horizontal wrapper">
+    <form role="form" class="form-horizontal wrapper" novalidate autocomplete="off" name="frmSignature">
 
             <br />
 
@@ -15,36 +15,72 @@
                                data-toggle="tooltip" data-placement="right"
                                type="text" title="This is the current date. Readonly." disabled
                                value="{{Application.Signature.AppDate | date: 'MM-dd-yyyy'}}"></span>
+                    <span class="col-md-2 errorMsg">
+
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="ddpWhoYouAre">Select who you are:</label></span>
                     <span class="col-md-6">
-                        <select id="ddpWhoYouAre" class="form-control" ng-model="Application.Signature.WhoYouAre">
+                        <select id="ddpWhoYouAre" class="form-control" name="WhoYouAre" ng-model="Application.Signature.WhoYouAre" required>
                             <option>I am the Provider</option>
                             <option>I am a person authorized to sign for this provider</option>
                         </select>
+                    </span>
+                    <span class="col-md-2 errorMsg" ng-show="frmSignature.WhoYouAre.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmSignature.WhoYouAre.$error.required">Required</span>
+                        <span ng-show="!frmSignature.WhoYouAre.$error.required">Invalid</span>
                     </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtName">Name:</label></span>
-                    <span class="col-md-6"><input id="txtName" class="form-control" type="text" ng-model="Application.Signature.Name"></span>
+                    <span class="col-md-6">
+                        <input id="txtName" class="form-control" type="text" name="Name" ng-model="Application.Signature.Name" required>
+                    </span>
+                    <span class="col-md-2 errorMsg" ng-show="frmSignature.Name.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmSignature.Name.$error.required">Required</span>
+                        <span ng-show="!frmSignature.Name.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtOccupationTitle">Occupation Title:</label></span>
-                    <span class="col-md-6"><input id="txtOccupationTitle" class="form-control" type="text" ng-model="Application.Signature.OccupationTitle"></span>
+                    <span class="col-md-6">
+                        <input id="txtOccupationTitle" class="form-control" type="text" name="OccupationTitle" ng-model="Application.Signature.OccupationTitle" required>
+                    </span>
+                    <span class="col-md-2 errorMsg" ng-show="frmSignature.OccupationTitle.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmSignature.OccupationTitle.$error.required">Required</span>
+                        <span ng-show="!frmSignature.OccupationTitle.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtPhone">Contact Phone Number:</label></span>
-                    <span class="col-md-6"><input id="txtPhone" class="form-control" type="text" ng-model="Application.Signature.Phone"></span>
+                    <span class="col-md-6">
+                        <input id="txtPhone" class="form-control" type="text" name="Phone" ng-pattern="PhoneRegex" ng-model="Application.Signature.Phone" placeholder="example: 111-222-3333" required>
+                    </span>
+                    <span class="col-md-2 errorMsg" ng-show="frmSignature.Phone.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmSignature.Phone.$error.required">Required</span>
+                        <span ng-show="!frmSignature.Phone.$error.required">Invalid</span>
+                    </span>
                 </div>
 
                 <div class="row topMargin">
                     <span class="col-md-4 right"><label class="control-label" for="txtEmail">Email Address:</label></span>
-                    <span class="col-md-6"><input id="txtEmail" class="form-control" type="Email" ng-model="Application.Signature.Email"></span>
+                    <span class="col-md-6">
+                        <input id="txtEmail" class="form-control" type="Email" name="Email" ng-pattern="EmailRegex" ng-model="Application.Signature.Email" required>
+                    </span>
+                    <span class="col-md-2 errorMsg" ng-show="frmSignature.Email.$invalid">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="frmSignature.Email.$error.required">Required</span>
+                        <span ng-show="!frmSignature.Email.$error.required">Invalid</span>
+                    </span>
                 </div>
 
             </div>
@@ -52,9 +88,9 @@
     </form>
 
     <br />
-    <div class="row topMargin SinkToBottom" align="center">
+    <div class="row topMargin" align="center">
         <span class="col-md-6"><a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Back&nbsp;&nbsp;</a></span>
-        <span class="col-md-6"><a href="#/provider" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a></span>
+        <span class="col-md-6"><a href="#/provider" ng-disabled="frmSignature.$invalid" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a></span>
     </div>
     <br />
 

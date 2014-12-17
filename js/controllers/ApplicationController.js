@@ -57,6 +57,9 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
 
             $scope.CurrentPractitioner = null;
 
+            $scope.PhoneRegex = '^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$';
+            $scope.EmailRegex = '^([0-9a-zA-Z]([\\+\\-_\\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]*\\.)+[a-zA-Z0-9]{2,3})$';
+            $scope.PostCodeRegex = '^([a-zA-Z]\\d[a-zA-z]\\s{1}?\\d[a-zA-Z]\\d)$';
 
         }
 
