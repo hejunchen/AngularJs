@@ -5,29 +5,6 @@
 app.controller("ApplicationController", ['$scope','$http','ApplicationService','CodeTableLoaderService',
     function($scope,$http,ApplicationService,CodeTableLoaderService){
 
-//        var CodeTableApiUrl = "http://hchenworkpc.pbchbs.com/ProviderRegistration/api/codetable/";
-//
-//        var getCodeTable_ProviderCategoryList = function(){
-//            var query = 'ProviderCategory';
-//            var url = CodeTableApiUrl + query;
-//            $http.get(url)
-//                .success(function(data){
-//                    $scope.ProviderCategoryList = data;
-//                    console.log($scope.ProviderCategoryList);
-//                });
-//        }
-//
-//
-//        var getCodeTable_ProvinceList = function(){
-//            var query = 'Province';
-//            var url = CodeTableApiUrl + query;
-//            $http.get(url)
-//                .success(function(data){
-//                    data.CodeTable = data.CodeTable;
-//                    $scope.ProvinceList = data;
-//                    console.log($scope.ProvinceList);
-//                });
-//        }
 
         $scope.init = function(){
 
@@ -64,6 +41,12 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
         }
 
         $scope.init();
+
+        $scope.SubmitApplication = function()
+        {
+            var url = 'http://hchenworkpc.pbchbs.com/ProviderRegistration/api/codetable';
+            $http.post(url, $scope.Application);
+        }
 
         $scope.SetNewPractitionerToCurrent = function(){
             $scope.CurrentPractitioner = ApplicationService.getEmptyPractitioner();

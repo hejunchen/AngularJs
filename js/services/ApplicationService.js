@@ -155,8 +155,8 @@ app.service('SignatureService', function(){
         AppDate: new Date(),
         WhoYouAre: 'I am the Provider',
         Name: 'Hejun Chen',
-        OccupationTitle: '',
-        Phone: '',
+        OccupationTitle: 'Developer',
+        Phone: '778-123-4567',
         Email: 'signature@pac.com',
         PrintAll: function(){
             console.log('Print All for: Signature');
