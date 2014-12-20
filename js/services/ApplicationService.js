@@ -30,13 +30,13 @@ app.service('CorporateContactService', function(){
     var CorporateContact = {
         Person: {
             Title: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
-            FirstName: '',
+            FirstName: 'Ying',
             MiddleName: '',
-            LastName: ''
+            LastName: 'Zhuang'
         },
-        Phone: '',
+        Phone: '604-101-1010',
         Email: 'CorpCon@pac.com',
-        UseSignatureEmail: false,
+        UseSignatureEmail: true,
         PrintAll: function () {
             console.log('Print All for: CorporateContact');
             console.log('Person: ' + this.Person);
@@ -70,15 +70,15 @@ app.service('PractitionerService', function(){
         Practitioner.Category = { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1};
         Practitioner.AssigningAuthority = { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1};
         Practitioner.EffectiveDateAtLocation = new Date();
-        Practitioner.RegistrationNumber = '';
+        Practitioner.RegistrationNumber = '123456789';
         Practitioner.EffectiveDateOfRegistration = new Date();
         Practitioner.Person = {
             Title: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
-            FirstName: '',
+            FirstName: 'Hejun',
             MiddleName: '',
-            LastName: ''};
-        Practitioner.Email = '';
-        PrintAll = function(){
+            LastName: 'Chen'};
+        Practitioner.Email = '604-101-1010';
+        Practitioner.PrintAll = function(){
             console.log('Print All for: Practitioner');
             console.log('Guid: ' + this.Guid);
             console.log('Category: ' + this.Category);
@@ -102,33 +102,34 @@ app.service('PractitionerService', function(){
 
 app.service('ProviderService', function(){
 
-    var Provider = {
-        Category: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
-        LegalName: 'Test Legal Name',
-        Address: {
-            Line1: '',
+    var Provider = {};
+    var Init = function(){
+        Provider.Category = { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
+        Provider.LegalName = 'Test Legal Name',
+        Provider.Address = {
+            Line1: '123 Street',
             Line2: '',
             Line3: '',
-            City: '',
+            City: 'Burnaby',
             Province: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
-            PostalCode: '',
+            PostalCode: 'V8W 7T9',
             Country: { CodeItemId: 0, CodeType: 'COUNTRY', Description: 'Canada', LanguageId: 1, LevelNo: 1, Mnemonic: 'CAN', NodeId: 1, ParentLevelNo: 0, ParentNodeId: 0}
         },
-        Phone: '',
-        Fax: '',
-        Email: '',
-        BusinessLicense: { Number: '', EffectiveDate: new Date() },
-        IsOpticalStore: function(){
+        Provider.Phone = '604-101-1010',
+        Provider.Fax = '604-101-1010',
+        Provider.Email = 'testProv@test.com',
+        Provider.BusinessLicense = { Number: '789456123', EffectiveDate: new Date() },
+            Provider.IsOpticalStore = function(){
             var result = (this.Category.NodeId === 5011);
             return result;
         },
-        IsValid: function(){
+        Provider.IsValid = function(){
             return (this.Category.CodeItemId > -1) && (this.LegalName.length > 0) &&
                    (this.Address.Line1.length > 0) && (this.Address.City.length > 0) && (this.Address.Province.CodeItemId > -1) && (this.Address.PostalCode.length > 0) && (this.Address.Country.CodeItemId > -1) &&
                    (this.Phone.length > 0) && (this.Email.length > 0) &&
                    ((this.IsOpticalStore() == true && this.BusinessLicense.Number.length > 0) || (this.IsOpticalStore() == false));
-        },
-        PrintAll: function(){
+                    },
+        Provider.PrintAll = function(){
             console.log('Print All for: Provider');
             console.log('Category: ' + this.Category);
             console.log('IsOpticalStore: ' + this.IsOpticalStore());
@@ -143,6 +144,7 @@ app.service('ProviderService', function(){
     };
 
     var GetProvider = function(){
+        Init();
         return Provider;
     }
     return { getProvider: GetProvider };
@@ -151,14 +153,15 @@ app.service('ProviderService', function(){
 
 app.service('SignatureService', function(){
 
-    var Signature = {
-        AppDate: new Date(),
-        WhoYouAre: 'I am the Provider',
-        Name: 'Hejun Chen',
-        OccupationTitle: 'Developer',
-        Phone: '778-123-4567',
-        Email: 'signature@pac.com',
-        PrintAll: function(){
+    var Signature = {};
+    var Init = function(){
+        Signature.AppDate = new Date(),
+        Signature.WhoYouAre = 'I am the Provider',
+        Signature.Name = 'Hejun Chen',
+        Signature.OccupationTitle = 'Developer',
+        Signature.Phone = '778-123-4567',
+        Signature.Email = 'signature@pac.com',
+        Signature.PrintAll = function(){
             console.log('Print All for: Signature');
             console.log('AppDate: ' + this.AppDate);
             console.log('WhoYouAre: ' + this.WhoYouAre);
@@ -170,6 +173,7 @@ app.service('SignatureService', function(){
     };
 
     var GetSignature = function(){
+        Init();
         return Signature;
     }
 

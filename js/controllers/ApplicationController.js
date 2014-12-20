@@ -2,8 +2,8 @@
  * Created by hchen on 11/3/2014.
  */
 
-app.controller("ApplicationController", ['$scope','$http','ApplicationService','CodeTableLoaderService',
-    function($scope,$http,ApplicationService,CodeTableLoaderService){
+app.controller("ApplicationController",['$scope','$http','$q','ApplicationService','CodeTableLoaderService',
+    function($scope,$http,$q,ApplicationService,CodeTableLoaderService){
 
 
         $scope.init = function(){
@@ -45,7 +45,34 @@ app.controller("ApplicationController", ['$scope','$http','ApplicationService','
         $scope.SubmitApplication = function()
         {
             var url = 'http://hchenworkpc.pbchbs.com/ProviderRegistration/api/codetable';
-            $http.post(url, $scope.Application);
+
+
+            alert('submit requested');
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: url,
+                //data: {value: $scope.Application},
+                success: function(data){
+                    alert('success.');
+                    alert(data);
+                },
+                error: function(error){
+                    alert('Error: ' + error.responseText);
+                }
+            });
+
+//            var deferred = $q.defer();
+//            $http.post(url, $scope.Application)
+//                .success(function(data){
+//                    deferred.resolve(data);
+//                });
+//            return deferred.promise;
+
+
+            alert('submitted');
+
         }
 
         $scope.SetNewPractitionerToCurrent = function(){
