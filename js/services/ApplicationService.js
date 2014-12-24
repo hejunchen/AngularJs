@@ -25,11 +25,27 @@ app.service('CodeTableLoaderService', ['$http','$q',function($http,$q){
 
 }]);
 
-app.service('CorporateContactService', function(){
+app.service('CodeTableItemService', function(){
+    var CodeTableItem = null;
+    var Init = function(){
+        CodeTableItem = { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1}
+        return CodeTableItem;
+    }
+
+    var GetCountryCanadaCodeTable = function(){
+        CodeTableItem = { CodeItemId: 0, CodeType: 'COUNTRY', Description: 'Canada', LanguageId: 1, LevelNo: 1, Mnemonic: 'CAN', NodeId: 1, ParentLevelNo: 0, ParentNodeId: 0};
+        return CodeTableItem;
+    }
+
+    return { getCodeTableItem: Init, getCountryCanada:GetCountryCanadaCodeTable };
+
+});
+
+app.service('CorporateContactService', ['CodeTableItemService', function(CodeTableItemService){
 
     var CorporateContact = {
         Person: {
-            Title: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
+            Title: CodeTableItemService.getCodeTableItem(),
             FirstName: 'Ying',
             MiddleName: '',
             LastName: 'Zhuang'
@@ -51,9 +67,9 @@ app.service('CorporateContactService', function(){
 
     return { getCorporateContact: GetCorporateContact };
 
-});
+}]);
 
-app.service('PractitionerService', function(){
+app.service('PractitionerService', ['CodeTableItemService', function(CodeTableItemService){
 
     function S4() {
         return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
@@ -73,7 +89,7 @@ app.service('PractitionerService', function(){
         Practitioner.RegistrationNumber = '123456789';
         Practitioner.EffectiveDateOfRegistration = new Date();
         Practitioner.Person = {
-            Title: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
+            Title: CodeTableItemService.getCodeTableItem(),
             FirstName: 'Hejun',
             MiddleName: '',
             LastName: 'Chen'};
@@ -98,22 +114,22 @@ app.service('PractitionerService', function(){
 
     return { getPractitioner: GetPractitioner };
 
-});
+}]);
 
-app.service('ProviderService', function(){
+app.service('ProviderService', ['CodeTableItemService', function(CodeTableItemService){
 
     var Provider = {};
     var Init = function(){
-        Provider.Category = { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
+        Provider.Category = CodeTableItemService.getCodeTableItem(),
         Provider.LegalName = 'Test Legal Name',
         Provider.Address = {
             Line1: '123 Street',
             Line2: '',
             Line3: '',
             City: 'Burnaby',
-            Province: { CodeItemId: -1, CodeType: '', Description: '', LanguageId: 1, LevelNo: 1, Mnemonic: '', NodeId: -1, ParentLevelNo: -1, ParentNodeId: -1},
+            Province: CodeTableItemService.getCodeTableItem(),
             PostalCode: 'V8W 7T9',
-            Country: { CodeItemId: 0, CodeType: 'COUNTRY', Description: 'Canada', LanguageId: 1, LevelNo: 1, Mnemonic: 'CAN', NodeId: 1, ParentLevelNo: 0, ParentNodeId: 0}
+            Country: CodeTableItemService.getCountryCanada()
         },
         Provider.Phone = '604-101-1010',
         Provider.Fax = '604-101-1010',
@@ -149,7 +165,7 @@ app.service('ProviderService', function(){
     }
     return { getProvider: GetProvider };
 
-});
+}]);
 
 app.service('SignatureService', function(){
 

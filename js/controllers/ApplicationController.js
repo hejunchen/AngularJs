@@ -46,32 +46,27 @@ app.controller("ApplicationController",['$scope','$http','$q','ApplicationServic
         {
             var url = 'http://hchenworkpc.pbchbs.com/ProviderRegistration/api/codetable';
 
-
-            alert('submit requested');
-
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
+            var PostOptions = {
+                method: 'POST',
+                headers:{ 'Content-Type': 'application/json'},
                 url: url,
-                //data: {value: $scope.Application},
-                success: function(data){
-                    alert('success.');
+                data: $scope.Application
+            }
+
+            // Simple POST request example (passing data) :
+            $http(PostOptions).
+                success(function(data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    alert(status);
                     alert(data);
-                },
-                error: function(error){
-                    alert('Error: ' + error.responseText);
-                }
-            });
-
-//            var deferred = $q.defer();
-//            $http.post(url, $scope.Application)
-//                .success(function(data){
-//                    deferred.resolve(data);
-//                });
-//            return deferred.promise;
-
-
-            alert('submitted');
+                }).
+                error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    alert(status);
+                    alert(data);
+                });
 
         }
 
