@@ -200,19 +200,22 @@ app.service('SignatureService', function(){
 app.service('ApplicationService', ['SignatureService','ProviderService','PractitionerService','CorporateContactService',
     function(SignatureService,ProviderService,PractitionerService,CorporateContactService){
 
-        var Application = {
-            Signature: SignatureService.getSignature(),
-            Provider: ProviderService.getProvider(),
-            Practitioners: [],
-            CorporateContact: CorporateContactService.getCorporateContact(),
-            PrintAll: function(){
-                this.Signature.PrintAll();
-                this.Provider.PrintAll();
-                this.CorporateContact.PrintAll();
-            }
+        var Application = null;
+        var init = function(){
+            Application = {
+                Signature: SignatureService.getSignature(),
+                Provider: ProviderService.getProvider(),
+                Practitioners: [],
+                CorporateContact: CorporateContactService.getCorporateContact(),
+                PrintAll: function(){
+                    this.Signature.PrintAll();
+                    this.Provider.PrintAll();
+                    this.CorporateContact.PrintAll();
+                }};
         }
 
         var GetApplication = function(){
+            init();
             return Application;
         }
 

@@ -12,8 +12,7 @@
                     <span class="col-md-4 right"><label class="control-label" for="txtAppDate">Date:</label></span>
                     <span class="col-md-6">
                         <input class="form-control" id="txtAppDate" title="This is a readonly value (default to current date)"
-                               data-toggle="tooltip" data-placement="right"
-                               type="text" title="This is the current date. Readonly." disabled
+                               data-toggle="tooltip" data-placement="right" type="text" disabled
                                value="{{Application.Signature.AppDate | date: 'MM-dd-yyyy'}}"></span>
                     <span class="col-md-2 errorMsg">
 
@@ -89,8 +88,9 @@
 
     <br />
     <div class="row topMargin" align="center">
-        <span class="col-md-6"><a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Back&nbsp;&nbsp;</a></span>
-        <span class="col-md-6"><a href="#/provider" ng-disabled="frmSignature.$invalid" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a></span>
+        <hr />
+        <span class="col-md-6"><button ng-click="Navigation.HomePage()" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Back&nbsp;&nbsp;</button></span>
+        <span class="col-md-6"><button ng-click="Navigation.ProviderPage()" ng-disabled="frmSignature.$invalid" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button></span>
     </div>
     <br />
 

@@ -202,8 +202,9 @@
 
     <br />
     <div class="row topMargin" align="center">
-        <span class="col-md-6"><a href="#/signature" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Back&nbsp;&nbsp;</a></span>
-        <span class="col-md-6"><a href="#/practitioners" ng-disabled="frmProvider.$invalid || Application.Provider.IsValid() == false" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a></span>
+        <hr />
+        <span class="col-md-6"><button ng-click="Navigation.SignaturePage()" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Back&nbsp;&nbsp;</button></span>
+        <span class="col-md-6"><button ng-click="Navigation.PractitionerPage()" ng-disabled="frmProvider.$invalid || Application.Provider.IsValid() == false" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button></span>
     </div>
     <br />
 

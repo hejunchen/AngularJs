@@ -2,13 +2,50 @@
 
 <div class="divConfirmation">
 
-    <div class="wrapper">
+
+    <div class="wrapper" ng-show="SubmissionErrors != null">
+        <div class="alert-danger">
+            {{ $scope.SubmissionErrors | json }}
+        </div>
+    </div>
+
+    <div class="wrapper" ng-show="SubmissionErrors == null">
+
+        <div class="msgInfo">
+            <br />
+            <div class="alert alert-success" role="alert">
+                <h3>Your application reference number is <span class="label label-default">{{ DocumentID }}</span></h3>
+                <p>
+                    You have successfully submitted an application for registration at <span class="label label-default">{{ SubmittedDateTime | date:'MM/dd/yyyy HH:mm:ss' }}</span>
+                </p>
+                <p>Please keep this number or print this page for your records. If you have any questions about your application, contact Pacific Blue Cross and reference this number.</p>
+            </div>
+        </div>
+
+        <div class="msgWarning" ng-show="Application.Provider.IsOpticalStore()">
+            <p>You must email or fax in a copy of your business license to Pacific Blue Cross Provider Relations in order for us to complete your application process. Please indicate the reference number above.</p>
+
+            <ul>
+                <li><b>Email:</b>&nbsp;<a href="mailto:provider@pac.bluecross.ca">provider@pac.bluecross.ca</a></li>
+                <li><b>Fax: </b>&nbsp;604-419-2115</li>
+            </ul>
+
+        </div>
+
+        <h2>What happens next?</h2>
+        <p>We will review your registration application and notify you by email in approximately 5 days if it has been approved or declined. </p>
+        <p>If approved, we will send a separate email with PROVIDERnet account login instructions to the Primary Administrator and registered practitioners at your location. </p>
+
+
+        <br />
 
     </div>
 
     <br />
     <div class="row topMargin" align="center">
-        <span class="col-md-12"><a href="#/" class="btn btn-primary"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Home page&nbsp;</a></span>
+        <hr />
+        <span class="col-md-12" ng-show="SubmissionErrors != null"><button ng-click="Navigation.SummaryPage()" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Back&nbsp;&nbsp;</button></span>
+        <span class="col-md-12" ng-show="SubmissionErrors == null"><button ng-click="Navigation.HomePage()" class="btn btn-primary"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Home page&nbsp;</button></span>
     </div>
     <br />
 

@@ -5,10 +5,43 @@
 app.controller("ApplicationController",['$scope','$http','$q','ApplicationService','CodeTableLoaderService',
     function($scope,$http,$q,ApplicationService,CodeTableLoaderService){
 
+        $scope.Navigation = {
+            HomePage: function(){
+                $scope.init();
+                window.location = '#/';
+            },
+            SignaturePage: function(){
+                window.location = '#/signature';
+            },
+            ProviderPage: function(){
+                window.location = '#/provider';
+            },
+            PractitionerPage: function(){
+                window.location = '#/practitioners';
+            },
+            CorporateContactPage: function(){
+                window.location = '#/corporateContact';
+            },
+            SummaryPage: function(){
+                window.location = '#/summary';
+            },
+            ConfirmationPage: function(){
+
+                $scope.SubmitApplication();                     //submit the application now, might be very quick, so better to have a delay
+
+                setTimeout(function(){
+                    window.location = '#/confirmation';         //redirect to the confirmation page after 1 second delay
+                }, 1000);
+
+            }
+        }
+
 
         $scope.init = function(){
 
             console.log('AppController Init()');
+
+            $scope.ShowLoadingAnimation = false;
 
             $scope.Application = ApplicationService.getApplication();
 
@@ -38,35 +71,64 @@ app.controller("ApplicationController",['$scope','$http','$q','ApplicationServic
             $scope.EmailRegex = '^([0-9a-zA-Z]([\\+\\-_\\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]*\\.)+[a-zA-Z0-9]{2,3})$';
             $scope.PostCodeRegex = '^([a-zA-Z]\\d[a-zA-z]\\s{1}?\\d[a-zA-Z]\\d)$';
 
+            $scope.ConsentIsChecked = false;
+            $scope.DocumentID = null;
+            $scope.SubmittedDateTime = null;
+            $scope.SubmissionErrors = null;
+
         }
 
         $scope.init();
 
         $scope.SubmitApplication = function()
         {
-            var url = 'http://hchenworkpc.pbchbs.com/ProviderRegistration/api/codetable';
 
-            var PostOptions = {
-                method: 'POST',
-                headers:{ 'Content-Type': 'application/json'},
-                url: url,
-                data: $scope.Application
+            $scope.ShowLoadingAnimation = true;
+
+            if ($scope.DocumentID != null && $scope.DocumentID.length > 0 &&
+                $scope.SubmittedDateTime != null && $scope.SubmissionErrors == null)
+            {
+                //already submitted
+                console.log('Application is already submitted, skip submission now.');
+            }
+            else
+            {
+                console.log('Application has not been submitted before, submitting it now.');
+
+                $scope.SubmittedDateTime = new Date();
+
+                var url = 'http://hchenworkpc.pbchbs.com/ProviderRegistration/api/codetable';
+
+                var PostOptions = {
+                    method: 'POST',
+                    headers:{ 'Content-Type': 'application/json'},
+                    url: url,
+                    data: $scope.Application
+                }
+
+                // Simple POST request example (passing data) :
+                $http(PostOptions).
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+//                    alert(status);
+//                    alert(data);
+                        $scope.DocumentID = data;
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        alert(status);
+                        alert(data);
+                        $scope.DocumentID = null;
+                        $scope.SubmittedDateTime = null;
+                        $scope.SubmissionErrors = data;
+                    }).
+                    finally(function(){
+                        $scope.ShowLoadingAnimation = false;
+                    });
             }
 
-            // Simple POST request example (passing data) :
-            $http(PostOptions).
-                success(function(data, status, headers, config) {
-                    // this callback will be called asynchronously
-                    // when the response is available
-                    alert(status);
-                    alert(data);
-                }).
-                error(function(data, status, headers, config) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                    alert(status);
-                    alert(data);
-                });
 
         }
 

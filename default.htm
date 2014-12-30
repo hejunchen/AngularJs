@@ -30,6 +30,7 @@
         .wrapper { min-height: 580px; }
         .errorMsg { color: red; }
         .topMargin { margin-top: 0.5em; }
+        .checkboxLabel:hover { cursor: pointer; text-decoration: underline; }
         body{
             font-family: Arial;
             font-size: medium;
@@ -55,6 +56,8 @@
 
 <body ng-app="PRApp" class="pageContainer" ng-cloak>
 
+
+
     <div style="width:970px; margin: auto;">
 
         <header id="bannerTop">
@@ -66,9 +69,8 @@
             </div>
         </header>
 
-
-
         <div class="panelContent_inner" style="background-color:white; padding: 20px;" ng-controller="ApplicationController">
+            <div class="loading-animation-ajax" ng-if="ShowLoadingAnimation"></div>
             <fieldset style="padding: 1em 2em">
                 <div ng-view></div>
             </fieldset>
