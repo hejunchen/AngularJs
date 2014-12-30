@@ -93,7 +93,7 @@ app.service('PractitionerService', ['CodeTableItemService', function(CodeTableIt
             FirstName: 'Hejun',
             MiddleName: '',
             LastName: 'Chen'};
-        Practitioner.Email = '604-101-1010';
+        Practitioner.Email = 'hchenPract@test.com';
         Practitioner.PrintAll = function(){
             console.log('Print All for: Practitioner');
             console.log('Guid: ' + this.Guid);
