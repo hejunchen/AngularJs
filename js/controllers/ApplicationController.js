@@ -16,22 +16,41 @@ app.controller("ApplicationController",['$scope','$http','$q','ApplicationServic
             ProviderPage: function(){
                 window.location = '#/provider';
             },
-            PractitionerPage: function(){
-                window.location = '#/practitioners';
+            PractitionerPage: function(moveForward){
+                if ($scope.Application.Provider.IsOpticalStore())
+                {
+                    if (moveForward)
+                        window.location = '#/corporateContact';
+                    else
+                        window.location = '#/provider';
+                }
+                else
+                {
+                    window.location = '#/practitioners';
+                }
+
             },
             CorporateContactPage: function(){
                 window.location = '#/corporateContact';
             },
             SummaryPage: function(){
+                if ($scope.Application.Provider.IsOpticalStore())
+                {
+                    $scope.Application.Practitioners = [];
+                }
+                else
+                {
+                    $scope.Application.Provider.BusinessLicense.Number = '';
+                    $scope.Application.Provider.BusinessLicense.EffectiveDate = new Date();
+                }
                 window.location = '#/summary';
             },
             ConfirmationPage: function(){
 
-                $scope.SubmitApplication();                     //submit the application now, might be very quick, so better to have a delay
-
-                setTimeout(function(){
-                    window.location = '#/confirmation';         //redirect to the confirmation page after 1 second delay
-                }, 1000);
+                //submit the application now, might be very quick, so better to have a delay
+                $scope.SubmitApplication().then(function(){
+                    window.location = '#/confirmation';
+                });
 
             }
         }
@@ -83,6 +102,8 @@ app.controller("ApplicationController",['$scope','$http','$q','ApplicationServic
         $scope.SubmitApplication = function()
         {
 
+            var deferred = $q.defer();
+
             $scope.ShowLoadingAnimation = true;
 
             if ($scope.DocumentID != null && $scope.DocumentID.length > 0 &&
@@ -114,6 +135,7 @@ app.controller("ApplicationController",['$scope','$http','$q','ApplicationServic
 //                    alert(status);
 //                    alert(data);
                         $scope.DocumentID = data;
+                        deferred.resolve(data);
                     }).
                     error(function(data, status, headers, config) {
                         // called asynchronously if an error occurs
@@ -123,12 +145,14 @@ app.controller("ApplicationController",['$scope','$http','$q','ApplicationServic
                         $scope.DocumentID = null;
                         $scope.SubmittedDateTime = null;
                         $scope.SubmissionErrors = data;
+                        deferred.resolve(data);
                     }).
                     finally(function(){
                         $scope.ShowLoadingAnimation = false;
                     });
             }
 
+            return deferred.promise;
 
         }
 
