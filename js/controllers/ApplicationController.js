@@ -140,8 +140,8 @@ app.controller("ApplicationController",['$scope','$http','$q','ApplicationServic
                     error(function(data, status, headers, config) {
                         // called asynchronously if an error occurs
                         // or server returns response with an error status.
-                        alert(status);
-                        alert(data);
+                        //alert(status);
+                        //alert(data);
                         $scope.DocumentID = null;
                         $scope.SubmittedDateTime = null;
                         $scope.SubmissionErrors = data;
@@ -241,6 +241,9 @@ app.controller("ApplicationController",['$scope','$http','$q','ApplicationServic
                 $scope.Application.CorporateContact.Email = '';
         }
 
+        $scope.ToggleConsentStatus = function(){
+            $scope.ConsentIsChecked = $scope.ConsentIsChecked? false : true;
+        }
 
 
 
