@@ -9,23 +9,27 @@
                 <span class="col-md-12"><button onclick="window.print();" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;Print&nbsp;</button></span>
             </div>
             <br /><br />
-            {{ Application | json }}
 
-            <div style="height:100px;"></div>
-            <div align="center" ng-click="ToggleConsentStatus()" style="padding: 1em 1em">
-                <span style="padding: 0.5em 1.5em" class="checkboxLabel alert-{{ConsentIsChecked? 'success' : 'warning'}}">
-                    <input type="checkbox" id="chkConsent" ng-model="ConsentIsChecked">
+            <p>
+                {{ Application | json }}
+            </p>
+
+            <button ng-click="ToggleConsentStatus()" class="col-md-12 btn btn-warning">
+                <!--<span style="padding: 0.5em 1.5em" >-->
+                    <span class="glyphicon glyphicon-{{ConsentIsChecked? 'check': 'unchecked'}}"></span>
                     &nbsp;
                     Check here to confirm you have all the required information to proceed.
-                </span>
-            </div>
+                <!--</span>-->
+            </button>
+
+            <br /><br />
 
         </div>
 
         <div class="row topMargin" align="center">
             <hr />
             <span class="col-md-6"><button ng-click="Navigation.CorporateContactPage()" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Back&nbsp;&nbsp;</button></span>
-            <span class="col-md-6"><button ng-click="Navigation.ConfirmationPage()" ng-disabled="!ConsentIsChecked" class="btn btn-primary" title="{{ConsentIsChecked? 'Click here to submit the application.' : 'You have to consent prior to submission.'}}"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;Submit Application&nbsp;</button></span>
+            <span class="col-md-6"><button ng-click="Navigation.ConfirmationPage()" ng-disabled="!ConsentIsChecked" class="btn btn-success" title="{{ConsentIsChecked? 'Click here to submit the application.' : 'You have to consent prior to submission.'}}"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;Submit Application&nbsp;</button></span>
         </div>
 
 

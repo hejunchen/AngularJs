@@ -245,8 +245,5 @@ app.controller("ApplicationController",['$scope','$http','$q','ApplicationServic
             $scope.ConsentIsChecked = $scope.ConsentIsChecked? false : true;
         }
 
-
-
-
     }]
 );
