@@ -13,7 +13,7 @@
 
         <div class="msgInfo">
             <br />
-            <div class="alert alert-success" role="alert">
+            <div>
                 <h3>Your application reference number is <span class="label label-default">{{ DocumentID }}</span></h3>
                 <p>
                     You have successfully submitted an application for registration at <span class="label label-default">{{ SubmittedDateTime | date:'MM/dd/yyyy HH:mm:ss' }}</span>
@@ -36,8 +36,10 @@
         <p>We will review your registration application and notify you by email in approximately 5 days if it has been approved or declined. </p>
         <p>If approved, we will send a separate email with PROVIDERnet account login instructions to the Primary Administrator and registered practitioners at your location. </p>
 
-
-        <br />
+        <br /><br /><br />
+        <div align="center">
+            <a href="#" onclick="window.print();return false;"><span class="glyphicon glyphicon-print"></span>&nbsp;Print This Page</a>
+        </div>
 
     </div>
 
