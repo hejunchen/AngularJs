@@ -67,8 +67,7 @@
                         <br /><br />
                         <h2 class="modal-title">
                             &nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;
-                            <span ng-show="CurrentPractitioner.SeqNum === -1">New Practitioner</span>
-                            <span ng-hide="CurrentPractitioner.SeqNum === -1">Existing Practitioner</span>
+                            <span>{{ CurrentPractitioner.SeqNum === -1? 'New' : 'Existing'}} Practitioner</span>
                         </h2>
                         <br />
                     </div>
