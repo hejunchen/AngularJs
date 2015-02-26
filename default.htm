@@ -21,9 +21,6 @@
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-route.min.js"></script>
 
-    <script src="js/PRApp.js"></script>
-    <script src="js/services/ApplicationService.js"></script>
-    <script src="js/controllers/ApplicationController.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -51,7 +48,7 @@
             /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
             /*font-family: "Trebuchet MS", Helvetica, sans-serif;*/
             font-size: medium;
-            font-weight: 600;
+            font-weight: 400;
 
             font-family: 'Open Sans', sans-serif;
             /*font-family: 'Roboto', sans-serif;*/
@@ -63,21 +60,6 @@
         }
 
     </style>
-
-    <script>
-        function ReloadScripts(){
-            $('.date').datepicker({
-                format: 'mm-dd-yyyy',
-                todayBtn: "linked",
-                endDate: new Date(),
-                autoclose: true,
-                language: "en",
-                forceParse: true
-            });
-        }
-
-    </script>
-
 
 </head>
 
@@ -131,12 +113,11 @@
             </ul>
         </footer>
 
-
     </div>
 
-
-
-
+    <script src="js/PRApp.js"></script>
+    <script src="js/services/ApplicationService.js"></script>
+    <script src="js/controllers/ApplicationController.js"></script>
 
 
 </body>

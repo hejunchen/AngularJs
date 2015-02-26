@@ -29,7 +29,7 @@
                         <td>{{p.SeqNum}}</td>
                         <td>{{p.Person.FirstName + ' ' + p.Person.LastName}}</td>
                         <td>{{p.Category.Description}}</td>
-                        <td>{{p.EffectiveDateAtLocation | date: 'MM-dd-yyyy'}}</td>
+                        <td>{{p.EffectiveDateAtLocation | date: 'MM/dd/yyyy'}}</td>
                         <td>{{p.Email}}</td>
                         <td>
                             <button class="btn btn-sm btn-primary" title="Edit" data-toggle="modal" data-target="#divEditPractitionerModal" ng-click="EditPractitioner(p)">
@@ -107,7 +107,7 @@
                                         <div class="input-group input-group-md date">
                                             <input id="txtEffectiveDateAtLocation"
                                                    class="form-control" type="text" readonly="readonly"
-                                                   value="{{CurrentPractitioner.EffectiveDateAtLocation | date: 'MM-dd-yyyy'}}">
+                                                   value="{{CurrentPractitioner.EffectiveDateAtLocation | date: 'MM/dd/yyyy'}}">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default" type="button" title="Click to select a date">
                                                     <span class="glyphicon glyphicon-calendar"></span>
@@ -131,7 +131,7 @@
                                         <div class="input-group input-group-md date">
                                             <input id="txtEffectiveDateOfRegistration"
                                                    class="form-control" type="text" readonly="readonly"
-                                                   value="{{CurrentPractitioner.EffectiveDateOfRegistration | date: 'MM-dd-yyyy'}}">
+                                                   value="{{CurrentPractitioner.EffectiveDateOfRegistration | date: 'MM/dd/yyyy'}}">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default" type="button" title="Click to select a date">
                                                     <span class="glyphicon glyphicon-calendar"></span>

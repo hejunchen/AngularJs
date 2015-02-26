@@ -15,3 +15,14 @@ app.config(['$routeProvider', function($routeProvider){
         .when('/confirmation', { templateUrl: 'partials/Confirmation.html' })
         .otherwise({ redirectTo: '/' });
 }]);
+
+function ReloadScripts(){
+    $('.date').datepicker({
+        format: 'mm/dd/yyyy',
+        todayBtn: "linked",
+        endDate: new Date(),
+        autoclose: true,
+        language: "en",
+        forceParse: true
+    });
+}
